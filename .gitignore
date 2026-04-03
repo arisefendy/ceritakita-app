@@ -1,0 +1,9 @@
+# Directories
+.idea
+.vscode
+node_modules
+dist
+
+# Files
+.env
+STUDENT.txt
