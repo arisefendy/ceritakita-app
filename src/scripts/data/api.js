@@ -45,7 +45,7 @@ export class StoryAPI {
     };
   }
 
-  static async getAllStories() {
+  static async getStories() {
     const accessToken = getAccessToken();
 
     const response = await fetch(ENDPOINTS.STORY_LIST, {

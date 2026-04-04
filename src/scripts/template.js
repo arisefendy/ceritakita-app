@@ -1,5 +1,17 @@
 import { showFormattedDate } from './utils';
 
+export function loaderTemplate() {
+  return `
+    <div class="loader"></div>
+  `;
+}
+
+export function loaderAbsoluteTemplate() {
+  return `
+    <div class="loader loader-absolute"></div>
+  `;
+}
+
 export function mainNavigationTemplate() {
   return `
     <li class="nav-item">
@@ -32,25 +44,25 @@ export function authenticatedNavigationTemplate() {
       </a>
     </li>
     <li class="nav-item">
-      <button id="logout-button" class="nav-link danger">
+      <a id="logout-button" class="nav-link danger" href="#/logout">
         <i class="fas fa-sign-out-alt"></i> Keluar
-      </button>
+      </a>
     </li>
   `;
 }
 
-export function storyListEmptyTemplate() {
+export function storiesListEmptyTemplate() {
   return `
-    <div id="story-list-empty" class="story-list-empty">
+    <div id="stories-list-empty" class="stories-list-empty">
       <h2>Tidak ada cerita yang tersedia</h2>
       <p>Saat ini, tidak ada cerita yang dapat ditampilkan.</p>
     </div>
   `;
 }
 
-export function storyListErrorTemplate(message) {
+export function storiesListErrorTemplate(message) {
   return `
-    <div id="story-list-error" class="story-list-error">
+    <div id="stories-list-error" class="stories-list-error">
       <h2>Terjadi kesalahan dalam pengambilan daftar cerita</h2>
       <p>${message ? message : 'Gunakan jaringan lain atau laporkan error ini.'}</p>
     </div>
@@ -85,9 +97,17 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
                     ${lat.toFixed(3)}, ${lon.toFixed(3)}
                   </span>
                 `
-              : ''
+              : `
+                  <span class="story-item__location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Tidak ada lokasi
+                  </span>
+                `
           }
         </div>
+        <a class="story-item__read-more btn btn-primary" href="#/stories/${id}">
+          Selengkapnya <i class="fas fa-arrow-right"></i>
+        </a>
       </div>
     </article>
   `;

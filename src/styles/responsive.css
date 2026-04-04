@@ -3,7 +3,7 @@
     padding-inline: 1rem;
   }
 
-  #stories-list {
+  .stories-list {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -12,8 +12,8 @@
     padding: 2.5rem;
   }
 
-  .stories-list__map-container {
-    height: 480px;
+  .stories-list__map__container {
+    height: 500px;
   }
 }
 
@@ -34,7 +34,7 @@
     transform: none;
     opacity: 1;
 
-    width: auto;
+    width: 100%;
     height: auto;
     padding: 0;
 
@@ -50,22 +50,31 @@
 
   .navigation-drawer__navlist-main,
   .navigation-drawer__navlist {
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+  }
+
+  .navigation-drawer__navlist-main {
+    margin-right: 1rem;
+  }
+
+  .navigation-drawer__navlist {
+    margin-left: auto;
   }
 
   .drawer-button {
     display: none;
   }
 
-  #stories-list {
-    grid-template-columns: repeat(3, 1fr);
+  .stories-list__map__container {
+    height: 600px;
   }
 
-  .login-container,
-  .register-container {
-    min-height: calc(100vh - 120px);
+  .stories-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
 
   .login-container,

@@ -1,11 +1,12 @@
 import routes from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
-import { getAccessToken } from '../utils/auth';
+import { getAccessToken, logout } from '../utils/auth';
 import {
   mainNavigationTemplate,
   unauthenticatedNavigationTemplate,
   authenticatedNavigationTemplate,
 } from '../template';
+import { showConfirm, showSuccess } from '../utils/alert';
 
 class App {
   #content = null;
@@ -59,8 +60,17 @@ class App {
     navList.innerHTML = authenticatedNavigationTemplate();
 
     const logoutButton = document.querySelector('#logout-button');
-    logoutButton.addEventListener('click', () => {
-      alert('Logout button diklik');
+    logoutButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      const result = await showConfirm('Apakah anda yakin ingin keluar?');
+
+      if (!result.isConfirmed) return;
+
+      logout();
+
+      showSuccess('Anda telah keluar dari akun');
+      location.hash = '/login';
     });
   }
 

@@ -16,6 +16,7 @@ export function showError(message) {
     title: 'Gagal',
     text: message,
     confirmButtonText: 'OK',
+    confirmButtonColor: '#00a6f4',
   });
 }
 
@@ -26,6 +27,8 @@ export function showConfirm(message) {
     text: message,
     showCancelButton: true,
     confirmButtonText: 'Ya',
+    confirmButtonColor: '#00a6f4',
     cancelButtonText: 'Batal',
+    cancelButtonColor: '#fb2c36',
   });
 }

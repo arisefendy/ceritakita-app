@@ -1,4 +1,15 @@
+import {
+  loaderAbsoluteTemplate,
+  storiesListEmptyTemplate,
+  storiesListErrorTemplate,
+  storyItemTemplate,
+} from '../../template';
+import HomePresenter from './home-presenter';
+import { StoryAPI } from '../../data/api';
+
 export default class HomePage {
+  #presenter = null;
+
   async render() {
     return `
       <section>
@@ -9,7 +20,7 @@ export default class HomePage {
       </section>
     
       <section class="container">
-        <h1 class="section-title">Daftar Cerita</h1>
+        <h1 class="section-title">Cerita dari Pengguna</h1>
 
         <div class="stories-list__container">
           <div id="stories-list"></div>
@@ -20,6 +31,54 @@ export default class HomePage {
   }
 
   async afterRender() {
-    // Do your job here
+    this.#presenter = new HomePresenter({
+      view: this,
+      model: StoryAPI,
+    });
+
+    await this.#presenter.initialStoriesAndMap();
+  }
+
+  populateStoriesList(message, stories) {
+    if (stories.length <= 0) {
+      this.populateStoriesListEmpty();
+      return;
+    }
+
+    const html = stories.reduce((accumulator, story) => {
+      return accumulator.concat(storyItemTemplate(story));
+    }, '');
+
+    document.getElementById('stories-list').innerHTML = `
+      <div class="stories-list">${html}</div>
+    `;
+  }
+
+  populateStoriesListEmpty() {
+    document.getElementById('stories-list').innerHTML = storiesListEmptyTemplate();
+  }
+
+  populateStoriesListError(message) {
+    document.getElementById('stories-list').innerHTML = storiesListErrorTemplate(message);
+  }
+
+  async initialMap() {
+    // TODO
+  }
+
+  showMapLoading() {
+    document.getElementById('map-loading-container').innerHTML = loaderAbsoluteTemplate();
+  }
+
+  hideMapLoading() {
+    document.getElementById('map-loading-container').innerHTML = '';
+  }
+
+  showLoading() {
+    document.getElementById('stories-list-loading-container').innerHTML = loaderAbsoluteTemplate();
+  }
+
+  hideLoading() {
+    document.getElementById('stories-list-loading-container').innerHTML = '';
   }
 }
