@@ -15,6 +15,24 @@
   .stories-list__map__container {
     height: 500px;
   }
+
+  /* STORY DETAIL Page Start */
+  .story-detail__image-wrapper {
+    height: 300px;
+  }
+
+  .story-detail__content {
+    padding: 1.5rem;
+  }
+
+  .story-detail__title {
+    font-size: 1.6rem;
+  }
+
+  .story-detail__map__container {
+    height: 350px;
+  }
+  /* STORY DETAIL Page End */
 }
 
 @media screen and (min-width: 1024px) {
@@ -87,4 +105,27 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  /* STORY DETAIL Page Start */
+  .story-detail__container {
+    max-width: 1000px;
+  }
+
+  .story-detail__image-wrapper {
+    height: 400px;
+  }
+
+  .story-detail__content {
+    padding: 1.5rem 2rem;
+  }
+
+  .story-detail__content {
+    font-size: 1.8rem;
+  }
+
+  .story-detail__description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  /* STORY DETAIL Page End */
 }

@@ -61,7 +61,7 @@ Aplikasi harus menampilkan data dari API dan memvisualisasikannya dalam peta dig
 
 ⭐⭐ **Basic**
 
-- [ ] Menampilkan data dari API (minimal gambar dan 3 teks)
+- [x] Menampilkan data dari API (minimal gambar dan 3 teks)
 - [ ] Melakukan visualisasi pada peta dengan marker dan pop-up
 
 ⭐⭐⭐ **Skilled**

@@ -25,7 +25,6 @@ export function mainNavigationTemplate() {
 
 export function unauthenticatedNavigationTemplate() {
   return `
-    <li class="nav-item push-notification-tools"></li>
     <li class="nav-item">
       <a href="#/login" class="nav-link">Masuk</a>
     </li>
@@ -37,15 +36,14 @@ export function unauthenticatedNavigationTemplate() {
 
 export function authenticatedNavigationTemplate() {
   return `
-    <li class="nav-item push-notification-tools"></li>
     <li class="nav-item">
-      <a href="#/add-story" class="nav-link primary">
-        Buat Cerita <i class="fas fa-plus"></i>
+      <a href="#/add-story" class="nav-link btn-block primary">
+        Buat Cerita <i class="fa-solid fa-plus"></i>
       </a>
     </li>
     <li class="nav-item">
       <a id="logout-button" class="nav-link danger" href="#/logout">
-        <i class="fas fa-sign-out-alt"></i> Keluar
+        <i class="fa-solid fa-right-from-bracket"></i> Keluar
       </a>
     </li>
   `;
@@ -86,29 +84,143 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
         </p>
         <div class="story-item__meta">
           <span class="story-item__date">
-            <i class="fas fa-calendar-alt"></i>
+            <i class="fa-solid fa-calendar"></i>
             ${showFormattedDate(createdAt, 'id-ID')}
           </span>
           ${
             lat && lon
               ? `
                   <span class="story-item__location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fa-solid fa-map"></i>
                     ${lat.toFixed(3)}, ${lon.toFixed(3)}
                   </span>
                 `
               : `
                   <span class="story-item__location">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fa-solid fa-map"></i>
                     Tidak ada lokasi
                   </span>
                 `
           }
         </div>
         <a class="story-item__read-more btn btn-primary" href="#/stories/${id}">
-          Selengkapnya <i class="fas fa-arrow-right"></i>
+          Selengkapnya <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
     </article>
+  `;
+}
+
+export function storyDetailErrorTemplate(message) {
+  return `
+    <div class="story-detail__error">
+      <h2>Gagal memuat detail cerita</h2>
+      <p>${message || 'Silakan coba lagi nanti atau gunakan jaringan lain.'}</p>
+
+      <a href="#/" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Kembali </a>
+    </div>
+  `;
+}
+
+export function storyDetailImageTemplate({ photoUrl = null, name = '' }) {
+  if (!photoUrl) {
+    return `
+    <div class="story-detail__image-wrapper">
+      <img 
+        class="story-detail__image" 
+        src="images/placeholder-photo.jpg" 
+        alt="Foto Placeholder 
+        loading="lazy"
+      />
+    </div>
+  `;
+  }
+
+  return `
+    <div class="story-detail__image-wrapper">
+      <img 
+        class="story-detail__image" 
+        src="${photoUrl}" 
+        alt="Foto cerita dari ${name}"
+        loading="lazy"
+      />
+    </div>
+  `;
+}
+
+export function storyDetailTemplate({ name, description, photoUrl, createdAt, lat, lon }) {
+  return `
+    <div class="story-detail__card">
+      ${storyDetailImageTemplate({ photoUrl, name })}
+
+      <div class="story-detail__content">
+        <div class="story-detail__header">
+          <h2 class="story-detail__title">${name}</h2>
+          <div id="bookmark-container" class="story-detail__action"></div>
+        </div>
+
+        <div class="story-detail__meta">
+          <span>
+            <i class="fas fa-calendar-alt"></i>
+            ${showFormattedDate(createdAt, 'id-ID')}
+          </span>
+          <span>
+            <i class="fa-solid fa-map"></i>
+            ${lat && lon ? `${lat.toFixed(5)}, ${lon.toFixed(5)}` : 'Tidak ada lokasi'}
+          </span>
+        </div>
+
+        <p class="story-detail__description">
+          ${description}
+        </p>
+
+        <div class="story-detail__map-section">
+          <h3 class="story-detail__map-title">Lokasi Cerita</h3>
+          <div class="story-detail__map__container">
+            ${
+              lat && lon
+                ? `
+                  <div id="map" class="story-detail__map"></div>
+                  <div id="map-loading-container"></div>
+                `
+                : `
+                  <div class="story-detail__map--placeholder">
+                    <i class="fa-solid fa-map"></i>
+                    <p>Lokasi tidak tersedia</p>
+                  </div>
+                `
+            }
+          </div>
+        </div>
+
+        <a href="#/" class="btn btn-primary">
+          <i class="fa-solid fa-arrow-left"></i> Kembali
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+export function saveStoryButtonTemplate() {
+  return `
+    <button 
+      id="story-detail-save" 
+      class="btn btn-transparent story-detail__bookmark-btn"
+      aria-label="Simpan cerita"
+    >
+      <i class="fa-regular fa-bookmark"></i> Simpan
+    </button>
+  `;
+}
+
+export function removeStoryButtonTemplate() {
+  return `
+    <button 
+      id="story-detail-remove" 
+      class="btn btn-success story-detail__bookmark-btn"
+      aria-label="Hapus dari tersimpan"
+    >
+      <i class="fa-regular fa-circle-check"></i> Tersimpan
+    </button>
   `;
 }

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="story-detail container">
+      <div class="story-detail__card">
+        ${storyDetailImageTemplate({ photoUrl, name })}
+
+        <div class="story-detail__content">
+          <div class="story-detail__header">
+            <h2 class="story-detail__title">${name}</h2>
+            <div id="bookmark-container" class="story-detail__bookmark"></div>
+          </div>
+
+          <div class="story-detail__meta">
+            <span>
+              <i class="fas fa-calendar-alt"></i>
+              ${showFormattedDate(createdAt, 'id-ID')}
+            </span>
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+              ${lat && lon ? `${lat.toFixed(5)}, ${lon.toFixed(5)}` : 'Tidak ada lokasi'}
+            </span>
+          </div>
+
+          <p class="story-detail__description">${description}</p>
+
+          ${ lat && lon ? `
+          <div class="story-detail__map-section">
+            <h3 class="story-detail__map-title">Lokasi Cerita</h3>
+            <div id="story-detail-map" class="story-detail__map"></div>
+          </div>
+          ` : '' }
+
+          <a href="#/" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Kembali </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

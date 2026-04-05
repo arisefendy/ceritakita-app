@@ -63,7 +63,7 @@ class App {
     logoutButton.addEventListener('click', async (event) => {
       event.preventDefault();
 
-      const result = await showConfirm('Apakah anda yakin ingin keluar?');
+      const result = await showConfirm('Apakah Anda yakin ingin keluar?');
 
       if (!result.isConfirmed) return;
 
