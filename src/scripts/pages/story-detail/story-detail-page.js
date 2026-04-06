@@ -51,7 +51,7 @@ export default class StoryDetailPage {
       const popupOptions = { content: story.name };
 
       this.#map.changeCamera(coordinate);
-      this.#map.addMarker(coordinate, markerOptions, popupOptions);
+      this.#map.addMarker(coordinate, markerOptions, popupOptions, false);
     }
 
     // Bookmark button

@@ -42,7 +42,7 @@ Aplikasi harus mengadopsi arsitektur Single Page Application (SPA) dengan naviga
 
 ⭐⭐ **Basic**
 
-- [ ] Menerapkan konsep SPA dengan hash routing
+- [x] Menerapkan konsep SPA dengan hash routing
 - [ ] Menerapkan default view transition
 
 ⭐⭐⭐ **Skilled**
@@ -62,18 +62,18 @@ Aplikasi harus menampilkan data dari API dan memvisualisasikannya dalam peta dig
 ⭐⭐ **Basic**
 
 - [x] Menampilkan data dari API (minimal gambar dan 3 teks)
-- [ ] Melakukan visualisasi pada peta dengan marker dan pop-up
+- [x] Melakukan visualisasi pada peta dengan marker dan pop-up
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Membuat 1 fungsionalitas untuk interaksi dengan peta, seperti:
+- [x] Membuat 1 fungsionalitas untuk interaksi dengan peta, seperti:
   - Filter lokasi
   - Highlight marker aktif
   - Sinkronisasi list dan peta
 
 ⭐⭐⭐⭐ **Advance**
 
-- [ ] Menerapkan layer control (minimal 2 tile layer)
+- [x] Menerapkan layer control (minimal 2 tile layer)
 
 ---
 

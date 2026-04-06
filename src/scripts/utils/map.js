@@ -1,4 +1,4 @@
-import { map, tileLayer, Icon, icon, marker, popup, latLng } from 'leaflet';
+import { map, tileLayer, Icon, icon, marker, popup, latLng, layerGroup, control } from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -7,6 +7,11 @@ import CONFIG from '../config';
 export default class Map {
   #zoom = 5;
   #map = null;
+  #storyLocationLayer = null;
+
+  #activeMarker = null;
+  #defaultIcon = null;
+  #activeIcon = null;
 
   static async getPlaceNameByCoordinate(latitude, longitude) {
     try {
@@ -76,17 +81,63 @@ export default class Map {
 
   constructor(selector, options = {}) {
     this.#zoom = options.zoom ?? this.#zoom;
+    this.#storyLocationLayer = layerGroup();
 
+    // Tile layers
     const tileOsm = tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
     });
+    const tileSatellite = tileLayer(
+      `https://api.maptiler.com/maps/hybrid-v4/{z}/{x}/{y}.png?key=${CONFIG.MAP_SERVICE_API_KEY}`,
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        attribution:
+          '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> ' +
+          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+      },
+    );
 
     this.#map = map(document.querySelector(selector), {
       zoom: this.#zoom,
       scrollWheelZoom: false,
-      layers: [tileOsm],
+      layers: [tileOsm, this.#storyLocationLayer],
       ...options,
+    });
+
+    const baseMaps = {
+      Peta: tileOsm,
+      Satelit: tileSatellite,
+    };
+
+    const overlayMaps = {
+      'Lokasi Cerita': this.#storyLocationLayer,
+    };
+
+    const layerControl = control.layers(baseMaps, overlayMaps);
+    layerControl.addTo(this.#map);
+
+    // Default icon marker
+    this.#defaultIcon = this.createIcon({
+      iconRetinaUrl:
+        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+      iconUrl:
+        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [0, -41],
+    });
+
+    // Active icon marker
+    this.#activeIcon = this.createIcon({
+      iconRetinaUrl:
+        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+      iconUrl:
+        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+      iconSize: [35, 55],
+      iconAnchor: [17, 55],
+      popupAnchor: [0, -55],
     });
   }
 
@@ -102,20 +153,21 @@ export default class Map {
   createIcon(options = {}) {
     return icon({
       ...Icon.Default.prototype.options,
-      iconRetinaUrl: markerIcon2x,
-      iconUrl: markerIcon,
+      iconRetinaUrl: options.iconRetinaUrl || markerIcon2x,
+      iconUrl: options.iconUrl || markerIcon,
       shadowUrl: markerShadow,
+      iconSize: options.iconSize || [25, 41],
       ...options,
     });
   }
 
-  addMarker(coordinates, markerOptions = {}, popupOptions = null) {
+  addMarker(coordinates, markerOptions = {}, popupOptions = null, interactive = true) {
     if (typeof markerOptions !== 'object') {
       throw new Error('markerOptions must be an object');
     }
 
     const newMarker = marker(coordinates, {
-      icon: this.createIcon(),
+      icon: this.#defaultIcon,
       ...markerOptions,
     });
 
@@ -132,7 +184,26 @@ export default class Map {
       newMarker.bindPopup(newPopup);
     }
 
-    newMarker.addTo(this.#map);
+    newMarker.addTo(this.#storyLocationLayer);
+
+    // Interactive mode with highlight marker active
+    if (interactive) {
+      newMarker.on('click', () => {
+        if (this.#activeMarker && this.#activeMarker !== newMarker) {
+          this.#activeMarker.setIcon(this.#defaultIcon);
+        }
+
+        newMarker.setIcon(this.#activeIcon);
+        this.#activeMarker = newMarker;
+      });
+
+      newMarker.on('popupclose', () => {
+        if (this.#activeMarker === newMarker) {
+          newMarker.setIcon(this.#defaultIcon);
+          this.#activeMarker = null;
+        }
+      });
+    }
 
     return newMarker;
   }

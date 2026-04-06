@@ -51,8 +51,14 @@ export default class HomePage {
       if (this.#map && story.lat && story.lon) {
         const coordinate = [story.lat, story.lon];
         const markerOptions = { alt: story.name };
-        const popupOptions = { content: story.name };
+        const popupOptions = {
+          content: `
+            <b>${story.name}</b><br/>
+            <small>${story.description.slice(0, 50)}...</small>
+          `,
+        };
 
+        // this.#map.addMarker(coordinate, markerOptions, popupOptions);
         this.#map.addMarker(coordinate, markerOptions, popupOptions);
       }
 
