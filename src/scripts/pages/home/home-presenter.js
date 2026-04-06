@@ -1,3 +1,5 @@
+import { storyMapper } from '../../data/api-mapper';
+
 export default class HomePresenter {
   #view;
   #model;
@@ -30,7 +32,10 @@ export default class HomePresenter {
         return;
       }
 
-      this.#view.populateStoriesList('Berhasil mendapatkan daftar cerita', response.listStory);
+      const stories = response.listStory;
+      const mappedStories = await Promise.all(stories.map((story) => storyMapper(story)));
+
+      this.#view.populateStoriesList(response.message, mappedStories);
     } catch (error) {
       console.error('initialStoryListAndMap: error:', error);
       this.#view.populateStoriesListError(error.message);

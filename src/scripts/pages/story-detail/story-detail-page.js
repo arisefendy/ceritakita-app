@@ -6,11 +6,13 @@ import {
   storyDetailTemplate,
 } from '../../template';
 import StoryDetailPresenter from './story-detail-presenter';
-import { StoryAPI } from '../../data/api';
 import { parseActivePathname } from '../../routes/url-parser';
+import Map from '../../utils/map';
+import { StoryAPI } from '../../data/api';
 
 export default class StoryDetailPage {
   #presenter = null;
+  #map = null;
 
   async render() {
     return `
@@ -38,12 +40,19 @@ export default class StoryDetailPage {
       description: story.description,
       photoUrl: story.photoUrl,
       createdAt: story.createdAt,
-      lat: story.lat,
-      lon: story.lon,
+      location: story.placeName,
     });
 
     // Map
     await this.#presenter.showStoryDetailMap(story);
+    if (this.#map && story.lat && story.lon) {
+      const coordinate = [story.lat, story.lon];
+      const markerOptions = { alt: story.name };
+      const popupOptions = { content: story.name };
+
+      this.#map.changeCamera(coordinate);
+      this.#map.addMarker(coordinate, markerOptions, popupOptions);
+    }
 
     // Bookmark button
     this.#presenter.showSaveButton();
@@ -54,7 +63,9 @@ export default class StoryDetailPage {
   }
 
   async initialMap() {
-    // todo
+    this.#map = await Map.build('#map', {
+      zoom: 15,
+    });
   }
 
   renderSaveButton() {

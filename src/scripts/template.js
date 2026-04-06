@@ -67,7 +67,7 @@ export function storiesListErrorTemplate(message) {
   `;
 }
 
-export function storyItemTemplate({ id, name, description, photoUrl, createdAt, lat, lon }) {
+export function storyItemTemplate({ id, name, description, photoUrl, createdAt, placeName }) {
   return `
     <article class="story-item" data-storyid="${id}">
       <img 
@@ -87,21 +87,15 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
             <i class="fa-solid fa-calendar"></i>
             ${showFormattedDate(createdAt, 'id-ID')}
           </span>
-          ${
-            lat && lon
-              ? `
-                  <span class="story-item__location">
-                    <i class="fa-solid fa-map"></i>
-                    ${lat.toFixed(3)}, ${lon.toFixed(3)}
-                  </span>
-                `
-              : `
-                  <span class="story-item__location">
-                    <i class="fa-solid fa-map"></i>
-                    Tidak ada lokasi
-                  </span>
-                `
-          }
+          <div class="story-item__location">
+            <i class="fa-solid fa-map"></i>
+            <span 
+              class="story-item__location__text" 
+              title="${placeName || 'Tanpa lokasi'}"
+            >
+              ${placeName || 'Tanpa lokasi'}
+            </span>
+          </div>
         </div>
         <a class="story-item__read-more btn btn-primary" href="#/stories/${id}">
           Selengkapnya <i class="fa-solid fa-arrow-right"></i>
@@ -148,7 +142,7 @@ export function storyDetailImageTemplate({ photoUrl = null, name = '' }) {
   `;
 }
 
-export function storyDetailTemplate({ name, description, photoUrl, createdAt, lat, lon }) {
+export function storyDetailTemplate({ name, description, photoUrl, createdAt, location }) {
   return `
     <div class="story-detail__card">
       ${storyDetailImageTemplate({ photoUrl, name })}
@@ -166,7 +160,7 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, la
           </span>
           <span>
             <i class="fa-solid fa-map"></i>
-            ${lat && lon ? `${lat.toFixed(5)}, ${lon.toFixed(5)}` : 'Tidak ada lokasi'}
+            ${location ? `${location}` : 'Tanpa lokasi'}
           </span>
         </div>
 
@@ -178,7 +172,7 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, la
           <h3 class="story-detail__map-title">Lokasi Cerita</h3>
           <div class="story-detail__map__container">
             ${
-              lat && lon
+              location
                 ? `
                   <div id="map" class="story-detail__map"></div>
                   <div id="map-loading-container"></div>
@@ -186,7 +180,7 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, la
                 : `
                   <div class="story-detail__map--placeholder">
                     <i class="fa-solid fa-map"></i>
-                    <p>Lokasi tidak tersedia</p>
+                    <p>Lokasi tidak ditambahkan pada cerita ini</p>
                   </div>
                 `
             }

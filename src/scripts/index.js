@@ -1,6 +1,7 @@
 // CSS imports
 import '../styles/styles.css';
 import '../styles/responsive.css';
+import 'leaflet/dist/leaflet.css';
 
 import App from './pages/app';
 

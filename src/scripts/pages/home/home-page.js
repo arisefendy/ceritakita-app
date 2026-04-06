@@ -5,10 +5,12 @@ import {
   storyItemTemplate,
 } from '../../template';
 import HomePresenter from './home-presenter';
+import Map from '../../utils/map';
 import { StoryAPI } from '../../data/api';
 
 export default class HomePage {
   #presenter = null;
+  #map = null;
 
   async render() {
     return `
@@ -46,6 +48,14 @@ export default class HomePage {
     }
 
     const html = stories.reduce((accumulator, story) => {
+      if (this.#map && story.lat && story.lon) {
+        const coordinate = [story.lat, story.lon];
+        const markerOptions = { alt: story.name };
+        const popupOptions = { content: story.name };
+
+        this.#map.addMarker(coordinate, markerOptions, popupOptions);
+      }
+
       return accumulator.concat(storyItemTemplate(story));
     }, '');
 
@@ -63,7 +73,10 @@ export default class HomePage {
   }
 
   async initialMap() {
-    // TODO
+    this.#map = await Map.build('#map', {
+      zoom: 10,
+      locate: true,
+    });
   }
 
   showMapLoading() {

@@ -1,3 +1,5 @@
+import { storyMapper } from '../../data/api-mapper';
+
 export default class StoryDetailPresenter {
   #storyId;
   #view;
@@ -33,7 +35,9 @@ export default class StoryDetailPresenter {
         return;
       }
 
-      this.#view.populateStoryDetail(response.message, response.story);
+      const story = await storyMapper(response.story);
+
+      this.#view.populateStoryDetail(response.message, story);
     } catch (error) {
       console.error('showStoryDetail: error:', error);
       this.#view.populateStoryDetailError(response.message);
