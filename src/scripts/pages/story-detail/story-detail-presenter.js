@@ -29,7 +29,6 @@ export default class StoryDetailPresenter {
     this.#view.showStoryDetailLoading();
     try {
       const response = await this.#model.getStoryById(this.#storyId);
-      console.log(response);
 
       if (!response.ok) {
         console.error('showStoryDetail: error:', response.message);

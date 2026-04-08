@@ -3,6 +3,7 @@ import RegisterPage from '../pages/auth/register/register-page';
 import HomePage from '../pages/home/home-page';
 import NewPage from '../pages/new/new-page';
 import StoryDetailPage from '../pages/story-detail/story-detail-page';
+import NotFoundPage from '../pages/not-found/not-found-page';
 import { checkAuthenticatedRoute, checkUnauthenticatedRouteOnly } from '../utils/auth';
 
 const routes = {
@@ -14,4 +15,6 @@ const routes = {
   '/stories/:id': () => checkAuthenticatedRoute(new StoryDetailPage()),
 };
 
-export default routes;
+const notFoundRoute = () => checkAuthenticatedRoute(new NotFoundPage());
+
+export { routes, notFoundRoute };

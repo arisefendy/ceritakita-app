@@ -952,17 +952,6 @@ footer {
   height: 100%;
 }
 
-/* #map-loading-container {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.6);
-} */
-
 .story-detail__map--placeholder {
   display: flex;
   flex-direction: column;
@@ -1254,3 +1243,30 @@ footer {
   font-size: 0.8rem;
 }
 /* NEW STORY Page End */
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
+}
+
+.not-found__image {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0.5rem;
+}
+
+.not-found__title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.not-found__message {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.not-found__button {
+  display: inline-block;
+}

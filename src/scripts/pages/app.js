@@ -1,4 +1,4 @@
-import routes from '../routes/routes';
+import { routes, notFoundRoute } from '../routes/routes';
 import { getActiveRoute } from '../routes/url-parser';
 import { getAccessToken, logout } from '../utils/auth';
 import {
@@ -78,7 +78,7 @@ class App {
     const url = getActiveRoute();
     const route = routes[url];
 
-    const page = route();
+    const page = route ? route() : notFoundRoute();
     if (!page) {
       location.reload();
     }
