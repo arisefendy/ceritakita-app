@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" id="no-connection">
+  <defs>
+    <linearGradient id="Gradient_bez_nazwy_16" x1="428.77" x2="428.77" y1="747.96" y2="807.98" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c7c7d1" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#c7c7d1"></stop>
+    </linearGradient>
+    <linearGradient id="Gradient_bez_nazwy_25" x1="502.16" x2="502.16" y1="192.81" y2="807.98" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7a8496"></stop>
+      <stop offset="1" stop-color="#363d56"></stop>
+    </linearGradient>
+    <linearGradient id="Gradient_bez_nazwy_21" x1="510.86" x2="510.86" y1="192.81" y2="807.98" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c7c7d1"></stop>
+      <stop offset="1" stop-color="#7a8496"></stop>
+    </linearGradient>
+    <linearGradient id="Gradient_bez_nazwy_44" x1="510.52" x2="510.52" y1="210.38" y2="765.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#363d56"></stop>
+      <stop offset="1" stop-color="#1d1d33"></stop>
+    </linearGradient>
+    <radialGradient id="Gradient_bez_nazwy_39" cx="970.28" cy="213.46" r="5.06" fx="970.28" fy="213.46" gradientTransform="translate(-813.29 -76.53)scale(1.36)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c7c7d1"></stop>
+      <stop offset=".2" stop-color="#bfc0cb"></stop>
+      <stop offset=".5" stop-color="#aaaebb"></stop>
+      <stop offset=".86" stop-color="#8890a1"></stop>
+      <stop offset="1" stop-color="#7a8496"></stop>
+    </radialGradient>
+  </defs>
+  <g id="Shadow">
+    <path id="Shadow-2" d="M214.7,747.96h252.29c.67,0,1.33.1,1.97.3l175.85,46.27c7.35,2.32,5.72,13.44-1.97,13.44h-287.86c-.67,0-10.36-.56-11-.76l-131.24-45.82c-7.35-2.32-5.72-13.44,1.97-13.44Z" style="fill:url(#Gradient_bez_nazwy_16)"></path>
+  </g>
+  <g id="Mobile">
+    <g id="Mobile-2">
+      <rect width="344.05" height="615.16" x="330.13" y="192.81" rx="21" ry="21" style="fill:url(#Gradient_bez_nazwy_25)"></rect>
+      <rect width="328.72" height="615.16" x="346.5" y="192.81" rx="21" ry="21" style="fill:url(#Gradient_bez_nazwy_21)"></rect>
+      <path d="M657.56,227.13v521.62c0,9.25-7.5,16.75-16.75,16.75h-260.58c-9.25,0-16.75-7.5-16.75-16.75V227.13c0-9.25,7.5-16.75,16.75-16.75h107.04c1.53,0,2.8,1.22,2.79,2.75-.01,1.94.24,3.94.76,5.89,2.43,9.08,10.85,14.95,20.25,14.7,11.04-.29,19.91-9.34,19.91-20.45,0,0,0-.02,0-.03,0-1.57,1.23-2.86,2.8-2.86h107.03c9.25,0,16.75,7.5,16.75,16.75Z" style="fill:url(#Gradient_bez_nazwy_44)"></path>
+      <path d="M510.17,209.09c3.05,0,5.54,2.48,5.54,5.54s-2.48,5.54-5.54,5.54-5.54-2.48-5.54-5.54,2.48-5.54,5.54-5.54M510.17,207.73c-3.81,0-6.9,3.09-6.9,6.9s3.09,6.9,6.9,6.9,6.9-3.09,6.9-6.9-3.09-6.9-6.9-6.9h0Z" style="fill:url(#Gradient_bez_nazwy_39)"></path>
+    </g>
+  </g>
+  <g id="No_wifi">
+    <g id="No_wifi-2">
+      <g>
+        <g>
+          <circle cx="511.54" cy="518.45" r="9.55" style="fill:#c7c7d1"></circle>
+          <rect width="13.64" height="66.84" x="504.72" y="428.42" rx="2" ry="2" style="fill:#c7c7d1"></rect>
+        </g>
+        <path d="M483.16 497.63c-1.38 0-2.73-.7-3.5-1.97-1.17-1.93-.55-4.45 1.38-5.62 3.69-2.24 6.88-4.17 12.94-5.22 2.21-.39 4.34 1.11 4.73 3.34.38 2.23-1.11 4.34-3.34 4.73-4.53.78-6.62 2.05-10.09 4.15-.66.4-1.4.59-2.12.59ZM539.42 497.63c-.72 0-1.45-.19-2.12-.59-3.47-2.1-5.56-3.37-10.09-4.15-2.23-.38-3.72-2.5-3.34-4.73s2.52-3.73 4.73-3.34c6.06 1.04 9.25 2.98 12.94 5.22 1.93 1.17 2.55 3.69 1.38 5.62-.77 1.27-2.12 1.97-3.5 1.97ZM464.67 481.07c-1.21 0-2.4-.53-3.21-1.55-1.41-1.77-1.11-4.34.66-5.75 9.08-7.22 19.25-14.17 32.08-16.14 2.22-.34 4.32 1.19 4.67 3.42.34 2.23-1.19 4.32-3.42 4.67-10.33 1.59-18.76 6.94-28.24 14.46-.75.6-1.65.89-2.54.89ZM556.85 479.56c-.89 0-1.78-.29-2.54-.88-8.64-6.83-16.17-11.39-27-12.99-2.24-.33-3.78-2.41-3.45-4.65.33-2.24 2.42-3.78 4.65-3.45 12.6 1.86 21.46 7.21 30.88 14.67 1.77 1.4 2.07 3.98.67 5.75-.81 1.02-2 1.55-3.21 1.55ZM575.63 465.74c-1.21 0-2.4-.53-3.21-1.55-11.38-14.33-27.38-23.51-45.05-25.85-2.24-.3-3.82-2.35-3.52-4.59.3-2.24 2.36-3.82 4.59-3.52 19.78 2.62 37.68 12.87 50.38 28.87 1.41 1.77 1.11 4.34-.66 5.75-.75.6-1.65.89-2.54.89ZM447.31 465.94c-.89 0-1.78-.29-2.53-.88-1.78-1.4-2.08-3.97-.68-5.75 12.63-16.01 30.44-26.33 50.16-29.04 2.23-.31 4.3 1.26 4.61 3.5.31 2.24-1.26 4.3-3.5 4.61-17.61 2.43-33.54 11.66-44.85 26.01-.81 1.02-2.01 1.56-3.22 1.56Z" style="fill:#c7c7d1"></path>
+      </g>
+    </g>
+  </g>
+</svg>

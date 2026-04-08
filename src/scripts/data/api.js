@@ -20,12 +20,8 @@ export class StoryAPI {
       body: data,
     });
 
-    const result = await response.json();
-
-    return {
-      ...result,
-      ok: response.ok,
-    };
+    const json = await response.json();
+    return { ...json, ok: response.ok };
   }
 
   static async login({ email, password }) {
@@ -37,66 +33,50 @@ export class StoryAPI {
       body: data,
     });
 
-    const result = await response.json();
-
-    return {
-      ...result,
-      ok: response.ok,
-    };
+    const json = await response.json();
+    return { ...json, ok: response.ok };
   }
 
   static async getStories() {
-    const accessToken = getAccessToken();
+    const token = getAccessToken();
 
     const response = await fetch(ENDPOINTS.STORY_LIST, {
       method: 'GET',
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
-    const result = await response.json();
-
-    return {
-      ...result,
-      ok: response.ok,
-    };
+    const json = await response.json();
+    return { ...json, ok: response.ok };
   }
 
   static async getStoryById(id) {
-    const accessToken = getAccessToken();
+    const token = getAccessToken();
 
     const response = await fetch(ENDPOINTS.STORY_DETAIL(id), {
       method: 'GET',
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
 
-    const result = await response.json();
-
-    return {
-      ...result,
-      ok: response.ok,
-    };
+    const json = await response.json();
+    return { ...json, ok: response.ok };
   }
 
-  static async addStory({ description, photo, latitude, longitude }) {
-    const accessToken = getAccessToken();
-
+  static async addStory({ description, photo, lat, lon }) {
+    const token = getAccessToken();
     const formData = new FormData();
+
     formData.set('description', description);
-    formData.set('photo', photo[0]);
-    if (latitude) formData.set('lat', latitude);
-    if (longitude) formData.set('lon', longitude);
+    if (photo) formData.set('photo', photo);
+    if (lat != null) formData.set('lat', lat);
+    if (lon != null) formData.set('lon', lon);
 
     const response = await fetch(ENDPOINTS.ADD_NEW_STORY, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
 
-    const result = await response.json();
-
-    return {
-      ...result,
-      ok: response.ok,
-    };
+    const json = await response.json();
+    return { ...json, ok: response.ok };
   }
 }

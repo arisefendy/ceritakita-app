@@ -1,4 +1,5 @@
 import { storyMapper } from '../../data/api-mapper';
+import { mapErrorMessage } from '../../utils/error-mapper';
 
 export default class HomePresenter {
   #view;
@@ -38,7 +39,7 @@ export default class HomePresenter {
       this.#view.populateStoriesList(response.message, mappedStories);
     } catch (error) {
       console.error('initialStoryListAndMap: error:', error);
-      this.#view.populateStoriesListError(error.message);
+      this.#view.populateStoriesListError(mapErrorMessage(error.message));
     } finally {
       this.#view.hideLoading();
     }

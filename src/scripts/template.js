@@ -37,7 +37,7 @@ export function unauthenticatedNavigationTemplate() {
 export function authenticatedNavigationTemplate() {
   return `
     <li class="nav-item">
-      <a href="#/add-story" class="nav-link btn-block primary">
+      <a href="#/new" class="nav-link btn-block primary">
         Buat Cerita <i class="fa-solid fa-plus"></i>
       </a>
     </li>
@@ -51,7 +51,8 @@ export function authenticatedNavigationTemplate() {
 
 export function storiesListEmptyTemplate() {
   return `
-    <div id="stories-list-empty" class="stories-list-empty">
+    <div id="stories-list-empty" class="stories-list-placeholder">
+      <img src="/images/errors/empty-list.svg" alt="Tidak ada cerita" class="stories-list-placeholder__image">
       <h2>Tidak ada cerita yang tersedia</h2>
       <p>Saat ini, tidak ada cerita yang dapat ditampilkan.</p>
     </div>
@@ -60,9 +61,10 @@ export function storiesListEmptyTemplate() {
 
 export function storiesListErrorTemplate(message) {
   return `
-    <div id="stories-list-error" class="stories-list-error">
+    <div id="stories-list-error" class="stories-list-placeholder">
+      <img src="/images/errors/network-error.svg" alt="Terjadi kesalahan" class="stories-list-placeholder__image">
       <h2>Terjadi kesalahan dalam pengambilan daftar cerita</h2>
-      <p>${message ? message : 'Gunakan jaringan lain atau laporkan error ini.'}</p>
+      <p>${message ? message : 'Periksa koneksi internet atau coba lagi nanti.'}</p>
     </div>
   `;
 }
@@ -105,13 +107,25 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
   `;
 }
 
-export function storyDetailErrorTemplate(message) {
+export function storyDetailErrorTemplate(message, type = 'server') {
+  let imageSrc = '/images/errors/network-error.svg';
+  let altText = 'Terjadi kesalahan';
+
+  if (type === 'not-found') {
+    imageSrc = '/images/errors/not-found.svg';
+    altText = 'Cerita tidak ditemukan';
+  }
+
   return `
     <div class="story-detail__error">
+      <img src=${imageSrc}
+           alt=${altText}
+           class="story-detail__error__image">
       <h2>Gagal memuat detail cerita</h2>
       <p>${message || 'Silakan coba lagi nanti atau gunakan jaringan lain.'}</p>
-
-      <a href="#/" class="btn btn-primary"> <i class="fas fa-arrow-left"></i> Kembali </a>
+      <a href="#/" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Kembali
+      </a>
     </div>
   `;
 }

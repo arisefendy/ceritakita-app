@@ -83,20 +83,20 @@ Aplikasi harus memiliki fitur untuk menambahkan data baru ke API.
 
 ⭐⭐ **Basic**
 
-- [ ] Membuat form tambah data + upload file
-- [ ] Pilih latitude & longitude melalui event klik di peta digital
-- [ ] Kirim data ke API (asynchronous)
+- [x] Membuat form tambah data + upload file
+- [x] Pilih latitude & longitude melalui event klik di peta digital
+- [x] Kirim data ke API (asynchronous)
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Menambah interaktivitas pada form, seperti:
+- [x] Menambah interaktivitas pada form, seperti:
   - Validasi input, atau
   - Pesan sukses atau error
 
 ⭐⭐⭐⭐ **Advance**
 
-- [ ] Memiliki opsi memilih gambar yang ditangkap melalui kamera langsung (media stream)
-- [ ] Menutup media stream ketika sudah tidak digunakan
+- [x] Memiliki opsi memilih gambar yang ditangkap melalui kamera langsung (media stream)
+- [x] Menutup media stream ketika sudah tidak digunakan
 
 ---
 

@@ -58,8 +58,8 @@ export default class StoryDetailPage {
     this.#presenter.showSaveButton();
   }
 
-  async populateStoryDetailError(message) {
-    document.getElementById('story-detail').innerHTML = storyDetailErrorTemplate(message);
+  async populateStoryDetailError(message, type) {
+    document.getElementById('story-detail').innerHTML = storyDetailErrorTemplate(message, type);
   }
 
   async initialMap() {

@@ -2,7 +2,7 @@ import LoginPresenter from './login-presenter';
 import { StoryAPI } from '../../../data/api';
 import * as AuthModel from '../../../utils/auth';
 import * as alertUtils from '../../../utils/alert';
-import { resetValidation, setAuthValidationMessage } from '../../../utils/validation';
+import { setFieldValidationMessage, resetValidation } from '../../../utils/validation';
 
 export default class LoginPage {
   #presenter = null;
@@ -27,7 +27,7 @@ export default class LoginPage {
                     required
                   >
                 </div>
-                <small id="email-error" class="login-form__input-error"></small>
+                <small id="email-error" class="input-error"></small>
               </div>
               <div class="form-control">
                 <label for="password-input" class="login-form__password-title">Password</label>
@@ -51,7 +51,7 @@ export default class LoginPage {
                     <i class="fa-regular fa-eye-slash"></i>
                   </button>
                 </div>
-                <small id="password-error" class="login-form__input-error"></small>
+                <small id="password-error" class="input-error"></small>
               </div>
               <div class="form-buttons login-form__form-buttons">
                 <div id="submit-button-container">
@@ -147,7 +147,7 @@ export default class LoginPage {
     const passwordError = document.getElementById('password-error');
 
     const validate = (input, errorEl, label) => {
-      setAuthValidationMessage(input, label);
+      setFieldValidationMessage(input, { label: label });
 
       if (!input.validity.valid) {
         errorEl.textContent = input.validationMessage;

@@ -1,7 +1,7 @@
 import RegisterPresenter from './register-presenter';
 import { StoryAPI } from '../../../data/api';
 import * as alertUtils from '../../../utils/alert';
-import { resetValidation, setAuthValidationMessage } from '../../../utils/validation';
+import { setFieldValidationMessage, resetValidation } from '../../../utils/validation';
 
 export default class RegisterPage {
   #presenter = null;
@@ -26,7 +26,7 @@ export default class RegisterPage {
                   required
                 >
               </div>
-              <small id="name-error" class="login-form__input-error"></small>
+              <small id="name-error" class="input-error"></small>
             </div>
             <div class="form-control">
               <label for="email-input" class="register-form__email-title">Email</label>
@@ -41,7 +41,7 @@ export default class RegisterPage {
                   required
                 >
               </div>
-              <small id="email-error" class="login-form__input-error"></small>
+              <small id="email-error" class="input-error"></small>
             </div>
             <div class="form-control">
               <label for="password-input" class="register-form__password-title">Password</label>
@@ -65,7 +65,7 @@ export default class RegisterPage {
                   <i class="fa-regular fa-eye-slash"></i>
                 </button>
               </div>
-              <small id="password-error" class="login-form__input-error"></small>
+              <small id="password-error" class="input-error"></small>
             </div>
             <div class="form-buttons register-form__form-buttons">
               <div id="submit-button-container">
@@ -167,7 +167,7 @@ export default class RegisterPage {
     const passwordError = document.getElementById('password-error');
 
     const validate = (input, errorEl, label) => {
-      setAuthValidationMessage(input, label);
+      setFieldValidationMessage(input, { label: label });
 
       if (!input.validity.valid) {
         errorEl.textContent = input.validationMessage;

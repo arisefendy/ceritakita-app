@@ -1,4 +1,5 @@
 import { storyMapper } from '../../data/api-mapper';
+import { mapErrorMessage } from '../../utils/error-mapper';
 
 export default class StoryDetailPresenter {
   #storyId;
@@ -28,10 +29,11 @@ export default class StoryDetailPresenter {
     this.#view.showStoryDetailLoading();
     try {
       const response = await this.#model.getStoryById(this.#storyId);
+      console.log(response);
 
       if (!response.ok) {
-        console.error('showStoryDetail: error:', error);
-        this.#view.populateStoryDetailError(response.message);
+        console.error('showStoryDetail: error:', response.message);
+        this.#view.populateStoryDetailError(mapErrorMessage(response.message), 'not-found');
         return;
       }
 
@@ -40,7 +42,7 @@ export default class StoryDetailPresenter {
       this.#view.populateStoryDetail(response.message, story);
     } catch (error) {
       console.error('showStoryDetail: error:', error);
-      this.#view.populateStoryDetailError(response.message);
+      this.#view.populateStoryDetailError(mapErrorMessage(error.message));
     } finally {
       this.#view.hideStoryDetailLoading();
     }
