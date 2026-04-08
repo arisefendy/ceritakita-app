@@ -36,6 +36,28 @@
   box-sizing: border-box;
 }
 
+@keyframes full-slide-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes full-slide-to-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+::view-transition-old(root) {
+  animation: full-slide-to-left 900ms ease-out;
+  animation-name: full-slide-to-left;
+}
+
+::view-transition-new(root) {
+  animation-name: full-slide-from-right;
+  animation: full-slide-from-right 900ms ease-out;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
@@ -221,6 +243,8 @@ header {
 
   background: var(--surface-color);
   box-shadow: var(--shadow);
+
+  view-transition-name: header;
 }
 
 .header-content {
@@ -455,6 +479,8 @@ header {
 footer {
   margin-top: 2rem;
   background: var(--surface-color);
+
+  view-transition-name: footer;
 }
 
 .footer-content {

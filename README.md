@@ -43,15 +43,15 @@ Aplikasi harus mengadopsi arsitektur Single Page Application (SPA) dengan naviga
 ⭐⭐ **Basic**
 
 - [x] Menerapkan konsep SPA dengan hash routing
-- [ ] Menerapkan default view transition
+- [x] Menerapkan default view transition
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Menerapkan arsitektur MVP ATAU custom view transition
+- [x] Menerapkan arsitektur MVP ATAU custom view transition
 
 ⭐⭐⭐⭐ **Advance**
 
-- [ ] Menerapkan arsitektur MVP DAN custom view transition
+- [x] Menerapkan arsitektur MVP DAN custom view transition
 
 ---
 

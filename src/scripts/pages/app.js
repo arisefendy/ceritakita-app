@@ -7,6 +7,7 @@ import {
   authenticatedNavigationTemplate,
 } from '../template';
 import { showConfirm, showSuccess } from '../utils/alert';
+import { transitionHelper } from '../utils';
 
 class App {
   #content = null;
@@ -83,11 +84,18 @@ class App {
       location.reload();
     }
 
-    this.#content.innerHTML = await page.render();
-    await page.afterRender();
+    const transition = transitionHelper({
+      updateDOM: async () => {
+        this.#content.innerHTML = await page.render();
+        await page.afterRender();
+      },
+    });
 
-    scrollTo({ top: 0, behavior: 'instant' });
-    this.#setupNavigationList();
+    transition.ready.catch(console.error);
+    transition.updateCallbackDone.then(() => {
+      scrollTo({ top: 0, behavior: 'instant' });
+      this.#setupNavigationList();
+    });
   }
 }
 

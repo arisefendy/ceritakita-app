@@ -26,6 +26,6 @@ export default class NotFoundPage {
   }
 
   showNotFoundPage() {
-    console.log('Not Found Page Loaded');
+    // console.log('Not Found Page Loaded');
   }
 }
