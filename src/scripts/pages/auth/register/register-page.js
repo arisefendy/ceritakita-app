@@ -26,7 +26,7 @@ export default class RegisterPage {
                   required
                 >
               </div>
-              <small id="name-error" class="input-error"></small>
+              <small id="name-error" class="input-error" aria-live="polite"></small>
             </div>
             <div class="form-control">
               <label for="email-input" class="register-form__email-title">Email</label>
@@ -41,7 +41,7 @@ export default class RegisterPage {
                   required
                 >
               </div>
-              <small id="email-error" class="input-error"></small>
+              <small id="email-error" class="input-error" aria-live="polite"></small>
             </div>
             <div class="form-control">
               <label for="password-input" class="register-form__password-title">Password</label>
@@ -60,19 +60,20 @@ export default class RegisterPage {
                   type="button" 
                   id="toggle-password"
                   class="toggle-password-btn"
+                  aria-controls="password-input"
                   aria-label="Tampilkan password"
                 >
-                  <i class="fa-regular fa-eye-slash"></i>
+                  <i class="fa-regular fa-eye-slash" aria-hidden="true"></i>
                 </button>
               </div>
-              <small id="password-error" class="input-error"></small>
+              <small id="password-error" class="input-error" aria-live="polite"></small>
             </div>
             <div class="form-buttons register-form__form-buttons">
               <div id="submit-button-container">
                 <button id="btn-register" class="btn btn-primary btn-block" type="submit">Daftar</button>
               </div>
               <p class="register-form__login-link">
-                Sudah punya akun? <a href="#/login">Masuk</a>
+                Sudah punya akun? <a href="#/login" aria-label="Masuk ke akun">Masuk</a>
               </p>
             </div>
           </form>
@@ -170,8 +171,10 @@ export default class RegisterPage {
       setFieldValidationMessage(input, { label: label });
 
       if (!input.validity.valid) {
+        input.setAttribute('aria-invalid', 'true');
         errorEl.textContent = input.validationMessage;
       } else {
+        input.setAttribute('aria-invalid', 'false');
         errorEl.textContent = '';
       }
     };
@@ -237,7 +240,7 @@ export default class RegisterPage {
   showSubmitLoadingButton() {
     document.getElementById('submit-button-container').innerHTML = `
       <button class="btn btn-primary btn-block" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Memuat...
+        <i class="fas fa-spinner loader-button" aria-hidden="true"></i> Memuat...
       </button>
     `;
   }

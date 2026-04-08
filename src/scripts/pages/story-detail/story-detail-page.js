@@ -9,6 +9,7 @@ import StoryDetailPresenter from './story-detail-presenter';
 import { parseActivePathname } from '../../routes/url-parser';
 import Map from '../../utils/map';
 import { StoryAPI } from '../../data/api';
+import * as alertUtils from '../../utils/alert';
 
 export default class StoryDetailPage {
   #presenter = null;
@@ -18,7 +19,7 @@ export default class StoryDetailPage {
     return `
       <section>
         <div class="story-detail__container">
-          <div id="story-detail" class="story-detail"></div>
+          <div id="story-detail" class="story-detail" aria-live="polite"></div>
           <div id="story-detail-loading-container"></div>
         </div>
       </section>
@@ -72,7 +73,7 @@ export default class StoryDetailPage {
     document.getElementById('bookmark-container').innerHTML = saveStoryButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
-      alert('Fitur simpan akan segera hadir');
+      alertUtils.showError('Fitur simpan akan segera hadir');
     });
   }
 
@@ -80,7 +81,7 @@ export default class StoryDetailPage {
     document.getElementById('bookmark-container').innerHTML = removeStoryButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {
-      alert('Fitur simpan akan segera hadir');
+      alertUtils.showError('Fitur simpan akan segera hadir');
     });
   }
 

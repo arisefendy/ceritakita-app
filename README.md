@@ -106,21 +106,21 @@ Aplikasi harus memenuhi standar aksesibilitas untuk memberikan pengalaman penggu
 
 ⭐⭐ **Basic**
 
-- [ ] Menerapkan teks alternatif pada setiap gambar
-- [ ] Menggunakan HTML elemen yang semantik
-- [ ] Memberikan label pada setiap input
+- [x] Menerapkan teks alternatif pada setiap gambar
+- [x] Menggunakan HTML elemen yang semantik
+- [x] Memberikan label pada setiap input
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Responsive Design
+- [x] Responsive Design
   - Mobile (375px)
   - Tablet (768px)
   - Desktop (1024px)
 
 ⭐⭐⭐⭐ **Advance**
 
-- [ ] Menerapkan fitur Skip to content
-- [ ] Seluruh elemen interaktif dapat dioperasikan dengan keyboard
+- [x] Menerapkan fitur Skip to content
+- [x] Seluruh elemen interaktif dapat dioperasikan dengan keyboard
 
 ---
 

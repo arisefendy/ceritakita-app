@@ -27,7 +27,7 @@ export default class LoginPage {
                     required
                   >
                 </div>
-                <small id="email-error" class="input-error"></small>
+                <small id="email-error" class="input-error" aria-live="polite"></small>
               </div>
               <div class="form-control">
                 <label for="password-input" class="login-form__password-title">Password</label>
@@ -46,19 +46,20 @@ export default class LoginPage {
                     type="button" 
                     id="toggle-password"
                     class="toggle-password-btn"
+                    aria-controls="password-input"
                     aria-label="Tampilkan password"
                   >
-                    <i class="fa-regular fa-eye-slash"></i>
+                    <i class="fa-regular fa-eye-slash" aria-hidden="true"></i>
                   </button>
                 </div>
-                <small id="password-error" class="input-error"></small>
+                <small id="password-error" class="input-error" aria-live="polite"></small>
               </div>
               <div class="form-buttons login-form__form-buttons">
                 <div id="submit-button-container">
                   <button id="btn-login" class="btn btn-primary btn-block" type="submit" >Masuk</button>
                 </div>
                 <p class="login-form__register-link">
-                  Belum punya akun? <a href="#/register">Daftar</a>
+                  Belum punya akun? <a href="#/register" aria-label="Daftar akun baru">Daftar</a>
                 </p>
               </div>
             </form>
@@ -150,8 +151,10 @@ export default class LoginPage {
       setFieldValidationMessage(input, { label: label });
 
       if (!input.validity.valid) {
+        input.setAttribute('aria-invalid', 'true');
         errorEl.textContent = input.validationMessage;
       } else {
+        input.setAttribute('aria-invalid', 'false');
         errorEl.textContent = '';
       }
     };
@@ -205,7 +208,7 @@ export default class LoginPage {
   showSubmitLoadingButton() {
     document.getElementById('submit-button-container').innerHTML = `
         <button class="btn btn-primary btn-block" type="submit" disabled>
-          <i class="fas fa-spinner loader-button"></i> Memuat...
+          <i class="fas fa-spinner loader-button" aria-hidden="true"></i> Memuat...
         </button>
       `;
   }

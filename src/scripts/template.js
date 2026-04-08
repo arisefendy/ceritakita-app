@@ -38,12 +38,12 @@ export function authenticatedNavigationTemplate() {
   return `
     <li class="nav-item">
       <a href="#/new" class="nav-link btn-block primary">
-        Buat Cerita <i class="fa-solid fa-plus"></i>
+        Buat Cerita <i class="fa-solid fa-plus" aria-hidden="true"></i>
       </a>
     </li>
     <li class="nav-item">
       <a id="logout-button" class="nav-link danger" href="#/logout">
-        <i class="fa-solid fa-right-from-bracket"></i> Keluar
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Keluar
       </a>
     </li>
   `;
@@ -51,7 +51,7 @@ export function authenticatedNavigationTemplate() {
 
 export function storiesListEmptyTemplate() {
   return `
-    <div id="stories-list-empty" class="stories-list-placeholder">
+    <div id="stories-list-empty" class="stories-list-placeholder" aria-live="polite">
       <img src="/images/errors/empty-list.svg" alt="Tidak ada cerita" class="stories-list-placeholder__image">
       <h2>Tidak ada cerita yang tersedia</h2>
       <p>Saat ini, tidak ada cerita yang dapat ditampilkan.</p>
@@ -61,7 +61,7 @@ export function storiesListEmptyTemplate() {
 
 export function storiesListErrorTemplate(message) {
   return `
-    <div id="stories-list-error" class="stories-list-placeholder">
+    <div id="stories-list-error" class="stories-list-placeholder" aria-live="assertive">
       <img src="/images/errors/network-error.svg" alt="Terjadi kesalahan" class="stories-list-placeholder__image">
       <h2>Terjadi kesalahan dalam pengambilan daftar cerita</h2>
       <p>${message ? message : 'Periksa koneksi internet atau coba lagi nanti.'}</p>
@@ -71,7 +71,7 @@ export function storiesListErrorTemplate(message) {
 
 export function storyItemTemplate({ id, name, description, photoUrl, createdAt, placeName }) {
   return `
-    <article class="story-item" data-storyid="${id}">
+    <div tabindex="0" class="story-item" data-storyid="${id}">
       <img 
         class="story-item__image" 
         src="${photoUrl}" 
@@ -80,17 +80,17 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
       />
 
       <div class="story-item__content">
-        <h3 class="story-item__name">${name}</h3>
+        <h2 class="story-item__name">${name}</h2>
         <p class="story-item__description">
           ${description}
         </p>
         <div class="story-item__meta">
           <span class="story-item__date">
-            <i class="fa-solid fa-calendar"></i>
+            <i class="fa-solid fa-calendar" aria-hidden="true"></i>
             ${showFormattedDate(createdAt, 'id-ID')}
           </span>
           <div class="story-item__location">
-            <i class="fa-solid fa-map"></i>
+            <i class="fa-solid fa-map" aria-hidden="true"></i>
             <span 
               class="story-item__location__text" 
               title="${placeName || 'Tanpa lokasi'}"
@@ -99,11 +99,11 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
             </span>
           </div>
         </div>
-        <a class="story-item__read-more btn btn-primary" href="#/stories/${id}">
-          Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+        <a class="story-item__read-more btn btn-primary" href="#/stories/${id}" aria-label="Lihat detail cerita dari ${name} pada ${showFormattedDate(createdAt, 'id-ID')}">
+          Selengkapnya <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
       </div>
-    </article>
+    </div>
   `;
 }
 
@@ -117,14 +117,14 @@ export function storyDetailErrorTemplate(message, type = 'server') {
   }
 
   return `
-    <div class="story-detail__error">
+    <div class="story-detail__error" aria-live="assertive">
       <img src=${imageSrc}
            alt=${altText}
            class="story-detail__error__image">
       <h2>Gagal memuat detail cerita</h2>
       <p>${message || 'Silakan coba lagi nanti atau gunakan jaringan lain.'}</p>
-      <a href="#/" class="btn btn-primary">
-        <i class="fas fa-arrow-left"></i> Kembali
+      <a href="#/" class="btn btn-primary" aria-label="Kembali ke daftar cerita">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i> Kembali
       </a>
     </div>
   `;
@@ -137,7 +137,7 @@ export function storyDetailImageTemplate({ photoUrl = null, name = '' }) {
       <img 
         class="story-detail__image" 
         src="images/placeholder-photo.jpg" 
-        alt="Foto Placeholder 
+        alt="Gambar placeholder karena tidak ada foto cerita" 
         loading="lazy"
       />
     </div>
@@ -169,11 +169,11 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, lo
 
         <div class="story-detail__meta">
           <span>
-            <i class="fas fa-calendar-alt"></i>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
             ${showFormattedDate(createdAt, 'id-ID')}
           </span>
           <span>
-            <i class="fa-solid fa-map"></i>
+            <i class="fa-solid fa-map" aria-hidden="true"></i>
             ${location ? `${location}` : 'Tanpa lokasi'}
           </span>
         </div>
@@ -193,7 +193,7 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, lo
                 `
                 : `
                   <div class="story-detail__map--placeholder">
-                    <i class="fa-solid fa-map"></i>
+                    <i class="fa-solid fa-map" aria-hidden="true"></i>
                     <p>Lokasi tidak ditambahkan pada cerita ini</p>
                   </div>
                 `
@@ -201,8 +201,8 @@ export function storyDetailTemplate({ name, description, photoUrl, createdAt, lo
           </div>
         </div>
 
-        <a href="#/" class="btn btn-primary">
-          <i class="fa-solid fa-arrow-left"></i> Kembali
+        <a href="#/" class="btn btn-primary" aria-label="Kembali ke daftar cerita">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Kembali
         </a>
       </div>
     </div>
@@ -216,7 +216,7 @@ export function saveStoryButtonTemplate() {
       class="btn btn-transparent story-detail__bookmark-btn"
       aria-label="Simpan cerita"
     >
-      <i class="fa-regular fa-bookmark"></i> Simpan
+      <i class="fa-regular fa-bookmark" aria-hidden="true"></i> Simpan
     </button>
   `;
 }
@@ -228,7 +228,7 @@ export function removeStoryButtonTemplate() {
       class="btn btn-success story-detail__bookmark-btn"
       aria-label="Hapus dari tersimpan"
     >
-      <i class="fa-regular fa-circle-check"></i> Tersimpan
+      <i class="fa-regular fa-circle-check" aria-hidden="true"></i> Tersimpan
     </button>
   `;
 }

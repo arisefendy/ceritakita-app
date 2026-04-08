@@ -6,19 +6,26 @@ import {
   unauthenticatedNavigationTemplate,
   authenticatedNavigationTemplate,
 } from '../template';
-import { showConfirm, showSuccess } from '../utils/alert';
-import { transitionHelper } from '../utils';
+import * as alertUtils from '../utils/alert';
+import { setupSkipToContent, transitionHelper } from '../utils';
 
 class App {
-  #content = null;
-  #drawerButton = null;
-  #navigationDrawer = null;
+  #content;
+  #drawerButton;
+  #navigationDrawer;
+  #skipLinkButton;
 
-  constructor({ content, drawerButton, navigationDrawer }) {
+  constructor({ content, drawerButton, navigationDrawer, skipLinkButton }) {
     this.#content = content;
     this.#drawerButton = drawerButton;
     this.#navigationDrawer = navigationDrawer;
+    this.#skipLinkButton = skipLinkButton;
 
+    this.#init();
+  }
+
+  #init() {
+    setupSkipToContent(this.#skipLinkButton, this.#content);
     this.#setupDrawer();
   }
 
@@ -64,13 +71,13 @@ class App {
     logoutButton.addEventListener('click', async (event) => {
       event.preventDefault();
 
-      const result = await showConfirm('Apakah Anda yakin ingin keluar?');
+      const result = await alertUtils.showConfirm('Apakah Anda yakin ingin keluar?');
 
       if (!result.isConfirmed) return;
 
       logout();
 
-      showSuccess('Anda telah keluar dari akun');
+      alertUtils.showSuccess('Anda telah keluar dari akun');
       location.hash = '/login';
     });
   }

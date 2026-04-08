@@ -32,10 +32,11 @@ export default class NewPage {
             <textarea
               name="description"
               id="description-input"
+              aria-describedby="description-error"
               placeholder="Tulis cerita Anda... "
               required
             ></textarea>
-            <small id="description-error" class="input-error"></small>
+            <small id="description-error" class="input-error" aria-live="polite"></small>
           </div>
 
           <div class="form-control">
@@ -51,6 +52,7 @@ export default class NewPage {
                 id="photo-input"
                 accept="image/*"
                 hidden
+                aria-describedby="photo-more-info"
               />
 
               <div class="photo__actions">
@@ -64,7 +66,7 @@ export default class NewPage {
               </div>
 
               <div id="camera-container" class="new-form__camera__container">
-                <video id="camera-video" class="new-form__camera__video">
+                <video id="camera-video" class="new-form__camera__video" aria-label="Preview kamera">
                   Video stream not available.
                 </video>
                 <canvas id="camera-canvas" class="new-form__camera__canvas"></canvas>
@@ -81,14 +83,19 @@ export default class NewPage {
 
               <div id="photo-preview" class="new-form__photo__preview"></div>
             </div>
-            <small id="photo-error" class="input-error"></small>
+            <small id="photo-error" class="input-error" aria-live="polite"></small>
           </div>
 
           <div class="form-control">
-            <label for="map" class="new-form__location__title">Lokasi</label>
+            <div class="new-form__location__title">Lokasi</div>
             <p id="map-more-info" class="new-form__help">Klik pada peta untuk menentukan lokasi.</p>
             <div class="new-form__location__map__container">
-              <div id="map" class="new-form__location__map" aria-describedby="map-more-info"></div>
+              <div 
+                id="map" 
+                class="new-form__location__map"
+                aria-label="Peta untuk memilih lokasi"
+                aria-describedby="map-more-info"
+              ></div>
               <div id="map-loading-container"></div>
             </div>
           </div>
@@ -187,6 +194,7 @@ export default class NewPage {
       errorEl.textContent = input.validationMessage;
 
       if (input.validationMessage) {
+        input.setAttribute('aria-invalid', input.validationMessage ? 'true' : 'false');
         errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         errorEl.focus({ preventScroll: true });
       }
@@ -302,6 +310,7 @@ export default class NewPage {
     this.#isCameraOpen = true;
 
     button.textContent = 'Tutup Kamera';
+    button.setAttribute('aria-label', 'Tutup kamera');
     button.classList.remove('btn-outline-primary');
     button.classList.add('btn-danger');
   }
@@ -316,6 +325,7 @@ export default class NewPage {
 
     if (button) {
       button.textContent = 'Buka Kamera';
+      button.setAttribute('aria-label', 'Buka kamera');
       button.classList.remove('btn-danger');
       button.classList.add('btn-outline-primary');
     }
@@ -341,7 +351,7 @@ export default class NewPage {
 
     previewContainer.innerHTML = `
       <div class="new-form__photo__preview__wrapper">
-        <img src="${imageUrl}" alt="Preview Foto" />
+        <img src="${imageUrl}" alt="Preview Foto yang akan diunggah" />
 
         <button
           type="button"
@@ -371,7 +381,7 @@ export default class NewPage {
 
     mapContainer.innerHTML = `
       <div class="new-form__map-placeholder">
-        <i class="fa-solid fa-location-dot"></i>
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
         <p>Lokasi tidak diaktifkan</p>
         <small>
           Anda tetap bisa mengirim cerita tanpa lokasi.<br>
@@ -425,7 +435,7 @@ export default class NewPage {
   showSubmitLoadingButton() {
     document.getElementById('submit-button-container').innerHTML = `
       <button class="btn btn-primary btn-block" type="submit" disabled>
-        <i class="fas fa-spinner loader-button"></i> Mengirim...
+        <i class="fas fa-spinner loader-button" aria-hidden="true"></i> Mengirim...
       </button>
     `;
   }
