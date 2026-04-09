@@ -1,3 +1,5 @@
+import { mapErrorMessage } from '../../../utils/error-mapper';
+
 export default class RegisterPresenter {
   #view;
   #model;
@@ -15,7 +17,7 @@ export default class RegisterPresenter {
 
       if (!response.ok) {
         console.error('register: response:', response);
-        this.#view.registeredFailed(response.message);
+        this.#view.registeredFailed(mapErrorMessage(response.message));
         return;
       }
 
@@ -23,7 +25,7 @@ export default class RegisterPresenter {
       this.#view.registeredSuccessfully(message, response.data);
     } catch (error) {
       console.error('register: error:', error);
-      this.#view.registeredFailed(error.message);
+      this.#view.registeredFailed(mapErrorMessage(error.message));
     } finally {
       this.#view.hideSubmitLoadingButton();
     }
