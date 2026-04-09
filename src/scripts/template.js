@@ -52,7 +52,7 @@ export function authenticatedNavigationTemplate() {
 export function storiesListEmptyTemplate() {
   return `
     <div id="stories-list-empty" class="stories-list-placeholder" aria-live="polite">
-      <img src="/images/errors/empty-list.svg" alt="Tidak ada cerita" class="stories-list-placeholder__image">
+      <img src="images/errors/empty-list.svg" alt="Tidak ada cerita" class="stories-list-placeholder__image">
       <h2>Tidak ada cerita yang tersedia</h2>
       <p>Saat ini, tidak ada cerita yang dapat ditampilkan.</p>
     </div>
@@ -62,7 +62,7 @@ export function storiesListEmptyTemplate() {
 export function storiesListErrorTemplate(message) {
   return `
     <div id="stories-list-error" class="stories-list-placeholder" aria-live="assertive">
-      <img src="/images/errors/network-error.svg" alt="Terjadi kesalahan" class="stories-list-placeholder__image">
+      <img src="images/errors/network-error.svg" alt="Terjadi kesalahan" class="stories-list-placeholder__image">
       <h2>Terjadi kesalahan dalam pengambilan daftar cerita</h2>
       <p>${message ? message : 'Periksa koneksi internet atau coba lagi nanti.'}</p>
     </div>
@@ -108,11 +108,11 @@ export function storyItemTemplate({ id, name, description, photoUrl, createdAt, 
 }
 
 export function storyDetailErrorTemplate(message, type = 'server') {
-  let imageSrc = '/images/errors/network-error.svg';
+  let imageSrc = 'images/errors/network-error.svg';
   let altText = 'Terjadi kesalahan';
 
   if (type === 'not-found') {
-    imageSrc = '/images/errors/not-found.svg';
+    imageSrc = 'images/errors/not-found.svg';
     altText = 'Cerita tidak ditemukan';
   }
 

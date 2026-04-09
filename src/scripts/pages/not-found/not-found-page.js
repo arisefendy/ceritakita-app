@@ -7,7 +7,7 @@ export default class NotFoundPage {
     return `
       <section class="not-found container">
         <div class="not-found__content">
-          <img src="/images/errors/not-found.svg" alt="Halaman tidak ditemukan" class="not-found__image" />
+          <img src="images/errors/not-found.svg" alt="Halaman tidak ditemukan" class="not-found__image" />
           <h1 class="not-found__title">Halaman Tidak Ditemukan</h1>
           <p class="not-found__message">
             Halaman yang Anda cari tidak tersedia atau mungkin telah dipindahkan.

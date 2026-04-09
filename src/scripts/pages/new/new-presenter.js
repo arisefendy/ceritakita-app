@@ -56,7 +56,7 @@ export default class NewPresenter {
     } catch (error) {
       console.error('startCamera: error:', error);
 
-      const message = mapCameraError(error.message);
+      const message = mapCameraError(error);
 
       this.#view.showCameraError(message);
       this.#view.hideCameraContainer();
