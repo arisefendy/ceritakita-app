@@ -3,8 +3,11 @@
 ## Table of Contents
 
 - [Description](#description)
+- [Fitur Utama](#-fitur-utama)
 - [Submission Status](#-submission-status)
-- [Submission Checklist](#-submission-checklist)
+- [Submission Pertama](#submission-proyek-pertama)
+- [Submission Kedua](#submission-proyek-kedua)
+- [Struktur Project](#-struktur-project)
 - [Setup & Development](#️-setup--development)
 - [Tech Stack](#️-tech-stack)
 - [Author](#-author)
@@ -21,10 +24,22 @@ Aplikasi ini dikembangkan menggunakan konsep Single Page Application (SPA), teri
 
 ---
 
+## ✨ Fitur Utama
+
+- Menampilkan cerita berdasarkan lokasi pada peta interaktif
+- Visualisasi marker menggunakan Leaflet.js
+- Menambahkan cerita baru dengan foto dan koordinat
+- Navigasi tanpa reload halaman (SPA)
+- Mendukung aksesibilitas sesuai standar WCAG
+- (Progress) Push Notification
+- (Progress) Dukungan PWA & Offline Mode
+
+---
+
 ## 🎯 Submission Status
 
-- 📌 Submission 1: **In progress**
-- 📌 Submission 2: Not started
+- 📌 Submission 1: ✅
+- 📌 Submission 2: **In progress**
 
 ---
 
@@ -49,7 +64,7 @@ Aplikasi harus mengadopsi arsitektur Single Page Application (SPA) dengan naviga
 
 - [x] Menerapkan arsitektur MVP ATAU custom view transition
 
-⭐⭐⭐⭐ **Advance**
+⭐⭐⭐⭐ **Advanced**
 
 - [x] Menerapkan arsitektur MVP DAN custom view transition
 
@@ -71,7 +86,7 @@ Aplikasi harus menampilkan data dari API dan memvisualisasikannya dalam peta dig
   - Highlight marker aktif
   - Sinkronisasi list dan peta
 
-⭐⭐⭐⭐ **Advance**
+⭐⭐⭐⭐ **Advanced**
 
 - [x] Menerapkan layer control (minimal 2 tile layer)
 
@@ -93,7 +108,7 @@ Aplikasi harus memiliki fitur untuk menambahkan data baru ke API.
   - Validasi input, atau
   - Pesan sukses atau error
 
-⭐⭐⭐⭐ **Advance**
+⭐⭐⭐⭐ **Advanced**
 
 - [x] Memiliki opsi memilih gambar yang ditangkap melalui kamera langsung (media stream)
 - [x] Menutup media stream ketika sudah tidak digunakan
@@ -117,10 +132,137 @@ Aplikasi harus memenuhi standar aksesibilitas untuk memberikan pengalaman penggu
   - Tablet (768px)
   - Desktop (1024px)
 
-⭐⭐⭐⭐ **Advance**
+⭐⭐⭐⭐ **Advanced**
 
 - [x] Menerapkan fitur Skip to content
 - [x] Seluruh elemen interaktif dapat dioperasikan dengan keyboard
+
+---
+
+### Submission: Proyek Kedua
+
+#### Kriteria 1: Mempertahankan Seluruh Kriteria Submission Sebelumnya
+
+Aplikasi tetap mempertahankan seluruh fitur utama dari submission pertama.
+
+⭐⭐⭐⭐ **Lolos**
+
+- [x] Menerapkan SPA dan transisi halaman
+- [x] Menampilkan data dan marker pada peta
+- [x] Memiliki fitur tambah data baru
+- [x] Menerapkan aksesibilitas sesuai standar
+
+---
+
+#### Kriteria 2: Push Notification
+
+Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service worker.
+
+⭐⭐ **Basic**
+
+- [ ] Menampilkan push notification dari server
+- [ ] Notifikasi dipicu saat menambahkan data story baru
+
+⭐⭐⭐ **Skilled**
+
+- [ ] Konten notifikasi dinamis (judul, pesan, icon)
+- [ ] Menggunakan payload dari event pada service worker
+
+⭐⭐⭐⭐ **Advanced**
+
+- [ ] Tersedia toggle enable/disable push notification
+- [ ] Notifikasi memiliki action (klik → navigasi ke detail data)
+
+---
+
+#### Kriteria 3: Progressive Web App (PWA)
+
+Aplikasi harus mendukung instalasi ke home screen dan tetap dapat diakses secara offline.
+
+⭐⭐ **Basic**
+
+- [ ] Aplikasi dapat di-install (Add to Home Screen)
+- [ ] Aplikasi dapat diakses offline, walau hanya Application Shell
+
+⭐⭐⭐ **Skilled**
+
+- [ ] Menambahkan screenshot pada Web App Manifest
+- [ ] Menambahkan shortcuts pada Web App Manifest
+- [ ] Tidak ada warning pada manifest (Chrome DevTools "Application -> Manifest")
+
+⭐⭐⭐⭐ **Advanced**
+
+- [ ] Data dinamis (API) tetap tersedia saat offline (caching strategy)
+- [ ] Menggunakan strategi caching yang sesuai (Workbox/runtime caching)
+
+---
+
+#### Kriteria 4: IndexedDB
+
+Aplikasi memiliki fitur (create, read, delete) yang menggunakan IndexedDB.
+
+⭐⭐ **Basic**
+
+- [ ] Menyimpan data ke IndexedDB
+- [ ] Menampilkan data dari IndexedDB
+- [ ] Menghapus data dari IndexedDB
+
+⭐⭐⭐ **Skilled**
+
+- [ ] Menambahkan fitur interaktif (Searching, Filtering, Sorting, dsb.)
+
+⭐⭐⭐⭐ **Advanced**
+
+- [ ] Mendukung offline-first (buat data saat offline)
+- [ ] Sinkronisasi data ke server saat kembali online
+
+---
+
+#### Kriteria 5: Deploy Aplikasi
+
+Aplikasi harus dapat diakses secara publik.
+
+⭐⭐⭐⭐ **Wajib**
+
+- [ ] Deploy ke salah satu platform:
+  - GitHub Pages
+  - Firebase Hosting
+  - Netlify
+- [ ] Menyertakan URL deployment pada file `STUDENT.txt`
+
+---
+
+## 📁 Struktur Project
+
+```bash
+citycareapp
+├── package.json            # Informasi dependensi proyek
+├── package-lock.json       # File lock untuk dependensi
+├── README.md               # Dokumentasi proyek
+├── webpack.common.js       # Konfigurasi Webpack (umum)
+├── webpack.dev.js          # Konfigurasi Webpack (development)
+├── webpack.prod.js         # Konfigurasi Webpack (production)
+└── src/                    # Direktori utama source code aplikasi
+    ├── index.html          # Berkas HTML utama
+    ├── public/             # Direktori aset publik
+    │   ├── favicon.png     # Ikon aplikasi
+    │   └── images/         # Gambar yang digunakan dalam proyek
+    │       ├── logo.png
+    │       ├── notes-background.jpg
+    │       ├── placeholder-image.jpg
+    │       └── errors/     # Gambar fallback saat terjadi error loading
+    ├── scripts             # Direktori untuk kode JavaScript
+    │   ├── data/           # Folder untuk API atau sumber data
+    │   ├── pages/          # Halaman/view utama (render UI)
+    │   ├── routes/         # Pengaturan routing
+    │   ├── utils/          # Helper dan utilitas
+    │   ├── templates.js    # Template HTML dinamis
+    │   ├── config.js       # Konfigurasi proyek
+    │   └── index.js        # Entry point aplikasi
+    └── styles/             # File CSS
+        ├── responsive.css  # Styling untuk responsivitas
+        └── styles.css      # Styling utama/global aplikasi
+```
 
 ---
 
