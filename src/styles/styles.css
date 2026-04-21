@@ -411,13 +411,19 @@ header {
   align-items: center;
 }
 
-.nav-link {
+.navigation-drawer__navlist-main li a,
+.navigation-drawer__navlist-main li button,
+.navigation-drawer__navlist li a,
+.navigation-drawer__navlist li button {
+  display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
 
-  padding: 0.5rem 1rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+
   border-radius: var(--radius-sm);
 
   font-size: 0.95rem;
@@ -429,33 +435,52 @@ header {
   border: none;
 
   cursor: pointer;
+
   transition: all 0.2s ease;
+
+  font-family: inherit;
+  line-height: 1.2;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-.nav-link:hover {
+.navigation-drawer__navlist-main li a:hover,
+.navigation-drawer__navlist-main li button:hover,
+.navigation-drawer__navlist li a:hover,
+.navigation-drawer__navlist li button:hover {
   color: var(--text-color);
   font-weight: 600;
 }
 
-.nav-link.primary {
+.navigation-drawer__navlist-main li a.primary,
+.navigation-drawer__navlist-main li button.primary,
+.navigation-drawer__navlist li a.primary,
+.navigation-drawer__navlist li button.primary {
   background: var(--primary-color);
   color: var(--primary-text-color);
-
-  font-weight: 600;
   box-shadow: var(--shadow);
 }
 
-.nav-link.primary:hover {
+.navigation-drawer__navlist-main li a.primary:hover,
+.navigation-drawer__navlist-main li button.primary:hover,
+.navigation-drawer__navlist li a.primary:hover,
+.navigation-drawer__navlist li button.primary:hover {
   background: var(--primary-hover-color);
   transform: translateY(-1px);
 }
 
-.nav-link.danger {
+.navigation-drawer__navlist-main li a.danger,
+.navigation-drawer__navlist-main li button.danger,
+.navigation-drawer__navlist li a.danger,
+.navigation-drawer__navlist li button.danger {
   color: var(--danger-color);
   font-weight: 600;
 }
 
-.nav-link.danger:hover {
+.navigation-drawer__navlist-main li a.danger:hover,
+.navigation-drawer__navlist-main li button.danger:hover,
+.navigation-drawer__navlist li a.danger:hover,
+.navigation-drawer__navlist li button.danger:hover {
   color: var(--danger-hover-color);
 }
 

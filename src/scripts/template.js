@@ -25,6 +25,7 @@ export function mainNavigationTemplate() {
 
 export function unauthenticatedNavigationTemplate() {
   return `
+    <li id="push-notification-tools" class="nav-item"></li>
     <li class="nav-item">
       <a href="#/login" class="nav-link">Masuk</a>
     </li>
@@ -36,6 +37,7 @@ export function unauthenticatedNavigationTemplate() {
 
 export function authenticatedNavigationTemplate() {
   return `
+    <li id="push-notification-tools" class="nav-item"></li>
     <li class="nav-item">
       <a href="#/new" class="nav-link btn-block primary">
         Buat Cerita <i class="fa-solid fa-plus" aria-hidden="true"></i>
@@ -229,6 +231,22 @@ export function removeStoryButtonTemplate() {
       aria-label="Hapus dari tersimpan"
     >
       <i class="fa-regular fa-circle-check" aria-hidden="true"></i> Tersimpan
+    </button>
+  `;
+}
+
+export function subscribeButtonTemplate() {
+  return `
+    <button id="subscribe-button" class="nav-link btn-block primary">
+      Subscribe <i class="fa-solid fa-bell"></i>
+    </button>
+  `;
+}
+
+export function unsubscribeButtonTemplate() {
+  return `
+    <button id="unsubscribe-button" class="nav-link btn-block primary">
+      Unsubscribe <i class="fa-solid fa-bell-slash"></i>
     </button>
   `;
 }

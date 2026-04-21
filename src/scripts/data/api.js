@@ -8,6 +8,9 @@ const ENDPOINTS = {
   STORY_LIST: `${CONFIG.BASE_URL}/stories`,
   STORY_DETAIL: (id) => `${CONFIG.BASE_URL}/stories/${id}`,
   ADD_NEW_STORY: `${CONFIG.BASE_URL}/stories`,
+
+  SUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
+  UNSUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
 };
 
 export class StoryAPI {
@@ -74,6 +77,43 @@ export class StoryAPI {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
+    });
+
+    const json = await response.json();
+    return { ...json, ok: response.ok };
+  }
+
+  static async subscribePushNotification({ endpoint, keys: { p256dh, auth } }) {
+    const token = getAccessToken();
+    const data = JSON.stringify({
+      endpoint,
+      keys: { p256dh, auth },
+    });
+
+    const response = await fetch(ENDPOINTS.SUBSCRIBE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: data,
+    });
+
+    const json = await response.json();
+    return { ...json, ok: response.ok };
+  }
+
+  static async unsubscribePushNotification({ endpoint }) {
+    const token = getAccessToken();
+    const data = JSON.stringify({ endpoint });
+
+    const response = await fetch(ENDPOINTS.UNSUBSCRIBE, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: data,
     });
 
     const json = await response.json();

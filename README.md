@@ -160,8 +160,8 @@ Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service work
 
 ⭐⭐ **Basic**
 
-- [ ] Menampilkan push notification dari server
-- [ ] Notifikasi dipicu saat menambahkan data story baru
+- [x] Menampilkan push notification dari server
+- [x] Notifikasi dipicu saat menambahkan data story baru
 
 ⭐⭐⭐ **Skilled**
 
@@ -170,7 +170,7 @@ Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service work
 
 ⭐⭐⭐⭐ **Advanced**
 
-- [ ] Tersedia toggle enable/disable push notification
+- [x] Tersedia toggle enable/disable push notification
 - [ ] Notifikasi memiliki action (klik → navigasi ke detail data)
 
 ---
