@@ -165,8 +165,8 @@ Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service work
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Konten notifikasi dinamis (judul, pesan, icon)
-- [ ] Menggunakan payload dari event pada service worker
+- [x] Konten notifikasi dinamis (judul, pesan, icon)
+- [x] Menggunakan payload dari event pada service worker
 
 ⭐⭐⭐⭐ **Advanced**
 
@@ -181,14 +181,14 @@ Aplikasi harus mendukung instalasi ke home screen dan tetap dapat diakses secara
 
 ⭐⭐ **Basic**
 
-- [ ] Aplikasi dapat di-install (Add to Home Screen)
-- [ ] Aplikasi dapat diakses offline, walau hanya Application Shell
+- [x] Aplikasi dapat di-install (Add to Home Screen)
+- [x] Aplikasi dapat diakses offline, walau hanya Application Shell
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Menambahkan screenshot pada Web App Manifest
-- [ ] Menambahkan shortcuts pada Web App Manifest
-- [ ] Tidak ada warning pada manifest (Chrome DevTools "Application -> Manifest")
+- [x] Menambahkan screenshot pada Web App Manifest
+- [x] Menambahkan shortcuts pada Web App Manifest
+- [x] Tidak ada warning pada manifest (Chrome DevTools "Application -> Manifest")
 
 ⭐⭐⭐⭐ **Advanced**
 

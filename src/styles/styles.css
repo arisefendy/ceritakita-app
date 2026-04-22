@@ -285,7 +285,7 @@ header {
 .brand-name__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
 
   text-decoration: none;
   font-size: 1.15rem;
@@ -297,8 +297,8 @@ header {
 .brand-name__link__image {
   display: block;
 
-  width: 36px;
-  height: 36px;
+  width: 35px;
+  height: 35px;
   object-fit: contain;
 }
 
