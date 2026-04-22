@@ -4,12 +4,14 @@ import { mapErrorMessage } from '../../utils/error-mapper';
 export default class StoryDetailPresenter {
   #storyId;
   #view;
-  #model;
+  #apiModel;
+  #dbModel;
 
-  constructor(storyId, { view, model }) {
+  constructor(storyId, { view, apiModel, dbModel }) {
     this.#storyId = storyId;
     this.#view = view;
-    this.#model = model;
+    this.#apiModel = apiModel;
+    this.#dbModel = dbModel;
   }
 
   async showStoryDetailMap(story) {
@@ -28,7 +30,7 @@ export default class StoryDetailPresenter {
   async showStoryDetail() {
     this.#view.showStoryDetailLoading();
     try {
-      const response = await this.#model.getStoryById(this.#storyId);
+      const response = await this.#apiModel.getStoryById(this.#storyId);
 
       if (!response.ok) {
         console.error('showStoryDetail: error:', response.message);
@@ -47,8 +49,31 @@ export default class StoryDetailPresenter {
     }
   }
 
-  showSaveButton() {
-    if (this.#isStorySaved()) {
+  async saveStory() {
+    try {
+      const story = await this.#apiModel.getStoryById(this.#storyId);
+      await this.#dbModel.putStory(story.story);
+
+      this.#view.saveToBookmarkSuccessfully('Cerita telah disimpan');
+    } catch (error) {
+      console.error('saveStory: error:', error);
+      this.#view.saveToBookmarkFailed(mapErrorMessage(error.message));
+    }
+  }
+
+  async removeStory() {
+    try {
+      await this.#dbModel.removeStory(this.#storyId);
+
+      this.#view.removeFromBookmarkSuccessfully('Cerita dihapus dari daftar tersimpan');
+    } catch (error) {
+      console.error('removeStory: error:', error);
+      this.#view.removeFromBookmarkFailed(mapErrorMessage(error.message));
+    }
+  }
+
+  async showSaveButton() {
+    if (await this.#isStorySaved()) {
       this.#view.renderRemoveButton();
       return;
     }
@@ -56,7 +81,7 @@ export default class StoryDetailPresenter {
     this.#view.renderSaveButton();
   }
 
-  #isStorySaved() {
-    return false;
+  async #isStorySaved() {
+    return !!(await this.#dbModel.getStoryById(this.#storyId));
   }
 }

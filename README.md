@@ -203,9 +203,9 @@ Aplikasi memiliki fitur (create, read, delete) yang menggunakan IndexedDB.
 
 ⭐⭐ **Basic**
 
-- [ ] Menyimpan data ke IndexedDB
-- [ ] Menampilkan data dari IndexedDB
-- [ ] Menghapus data dari IndexedDB
+- [x] Menyimpan data ke IndexedDB
+- [x] Menampilkan data dari IndexedDB
+- [x] Menghapus data dari IndexedDB
 
 ⭐⭐⭐ **Skilled**
 

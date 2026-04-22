@@ -9,6 +9,7 @@ import StoryDetailPresenter from './story-detail-presenter';
 import { parseActivePathname } from '../../routes/url-parser';
 import Map from '../../utils/map';
 import { StoryAPI } from '../../data/api';
+import Database from '../../data/database';
 import * as alertUtils from '../../utils/alert';
 
 export default class StoryDetailPage {
@@ -29,7 +30,8 @@ export default class StoryDetailPage {
   async afterRender() {
     this.#presenter = new StoryDetailPresenter(parseActivePathname().id, {
       view: this,
-      model: StoryAPI,
+      apiModel: StoryAPI,
+      dbModel: Database,
     });
 
     this.#presenter.showStoryDetail();
@@ -73,16 +75,34 @@ export default class StoryDetailPage {
     document.getElementById('bookmark-container').innerHTML = saveStoryButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
-      alertUtils.showError('Fitur simpan akan segera hadir');
+      await this.#presenter.saveStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+
+  saveToBookmarkSuccessfully(message) {
+    alertUtils.showSuccess(message);
+  }
+
+  saveToBookmarkFailed(message) {
+    alertUtils.showError(message);
   }
 
   renderRemoveButton() {
     document.getElementById('bookmark-container').innerHTML = removeStoryButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {
-      alertUtils.showError('Fitur simpan akan segera hadir');
+      await this.#presenter.removeStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+
+  removeFromBookmarkSuccessfully(message) {
+    alertUtils.showSuccess(message);
+  }
+
+  removeFromBookmarkFailed(message) {
+    alertUtils.showError(message);
   }
 
   showStoryDetailLoading() {

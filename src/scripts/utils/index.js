@@ -46,7 +46,7 @@ export function isServiceWorkerAvailable() {
 }
 
 export async function registerServiceWorker() {
-  if (!isServiceWorkerAvailable) {
+  if (!isServiceWorkerAvailable()) {
     console.log('Service worker API unsupported');
     return;
   }

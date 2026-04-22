@@ -215,7 +215,7 @@ export function saveStoryButtonTemplate() {
   return `
     <button 
       id="story-detail-save" 
-      class="btn btn-transparent story-detail__bookmark-btn"
+      class="btn btn-transparent story-detail__bookmark-btn bookmark-inactive"
       aria-label="Simpan cerita"
     >
       <i class="fa-regular fa-bookmark" aria-hidden="true"></i> Simpan
@@ -227,7 +227,7 @@ export function removeStoryButtonTemplate() {
   return `
     <button 
       id="story-detail-remove" 
-      class="btn btn-success story-detail__bookmark-btn"
+      class="btn btn-success story-detail__bookmark-btn bookmark-active"
       aria-label="Hapus dari tersimpan"
     >
       <i class="fa-regular fa-circle-check" aria-hidden="true"></i> Tersimpan

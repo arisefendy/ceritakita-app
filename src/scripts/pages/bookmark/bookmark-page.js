@@ -4,11 +4,11 @@ import {
   storiesListErrorTemplate,
   storyItemTemplate,
 } from '../../template';
-import HomePresenter from './home-presenter';
+import BookmarkPresenter from './bookmark-presenter';
+import Database from '../../data/database';
 import Map from '../../utils/map';
-import { StoryAPI } from '../../data/api';
 
-export default class HomePage {
+export default class BookmarkPage {
   #presenter = null;
   #map = null;
 
@@ -20,10 +20,10 @@ export default class HomePage {
           <div id="map-loading-container"></div>
         </div>
       </section>
-    
+ 
       <section class="container">
-        <h1 class="section-title">Cerita dari Pengguna</h1>
-
+        <h1 class="section-title">Daftar Cerita Tersimpan</h1>
+ 
         <div class="stories-list__container">
           <div id="stories-list"></div>
           <div id="stories-list-loading-container"></div>
@@ -33,17 +33,17 @@ export default class HomePage {
   }
 
   async afterRender() {
-    this.#presenter = new HomePresenter({
+    this.#presenter = new BookmarkPresenter({
       view: this,
-      model: StoryAPI,
+      model: Database,
     });
 
     await this.#presenter.initialStoriesAndMap();
   }
 
-  populateStoriesList(message, stories) {
+  populateBookmarkedStories(message, stories) {
     if (stories.length <= 0) {
-      this.populateStoriesListEmpty();
+      this.populateBookmarkedStoriesListEmpty();
       return;
     }
 
@@ -69,11 +69,11 @@ export default class HomePage {
     `;
   }
 
-  populateStoriesListEmpty() {
+  populateBookmarkedStoriesListEmpty() {
     document.getElementById('stories-list').innerHTML = storiesListEmptyTemplate();
   }
 
-  populateStoriesListError(message) {
+  populateBookmarkedStoriesError(message) {
     document.getElementById('stories-list').innerHTML = storiesListErrorTemplate(message);
   }
 
@@ -84,19 +84,19 @@ export default class HomePage {
     });
   }
 
+  showStoriesListLoading() {
+    document.getElementById('stories-list-loading-container').innerHTML = loaderAbsoluteTemplate();
+  }
+
+  hideStoriesListLoading() {
+    document.getElementById('stories-list-loading-container').innerHTML = '';
+  }
+
   showMapLoading() {
     document.getElementById('map-loading-container').innerHTML = loaderAbsoluteTemplate();
   }
 
   hideMapLoading() {
     document.getElementById('map-loading-container').innerHTML = '';
-  }
-
-  showLoading() {
-    document.getElementById('stories-list-loading-container').innerHTML = loaderAbsoluteTemplate();
-  }
-
-  hideLoading() {
-    document.getElementById('stories-list-loading-container').innerHTML = '';
   }
 }

@@ -13,6 +13,10 @@
   --danger-text-color: #ffffff;
   --danger-shadow-color: #c10007;
 
+  --success-color: #00c950;
+  --success-hover-color: #00a63e;
+  --success-text-color: #ffffff;
+
   --background-color: #f9fafb;
   --surface-color: #ffffff;
 
@@ -971,13 +975,31 @@ footer {
   transition: all 0.2s ease;
 }
 
-.story-detail__bookmark-btn:hover {
+.story-detail__bookmark-btn.bookmark-inactive {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border-color);
+}
+
+.story-detail__bookmark-btn.bookmark-inactive:hover {
   background: rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
   transform: translateY(-1px);
 }
 
+.story-detail__bookmark-btn.bookmark-active {
+  background: var(--success-color);
+  color: var(--success-text-color);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.story-detail__bookmark-btn.bookmark-active:hover {
+  background: var(--success-hover-color);
+  color: var(--success-text-color);
+}
+
 .story-detail__bookmark-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
 .story-detail__bookmark-btn i {
