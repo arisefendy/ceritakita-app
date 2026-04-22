@@ -209,12 +209,12 @@ Aplikasi memiliki fitur (create, read, delete) yang menggunakan IndexedDB.
 
 ⭐⭐⭐ **Skilled**
 
-- [ ] Menambahkan fitur interaktif (Searching, Filtering, Sorting, dsb.)
+- [x] Menambahkan fitur interaktif (Searching, Filtering, Sorting, dsb.)
 
 ⭐⭐⭐⭐ **Advanced**
 
-- [ ] Mendukung offline-first (buat data saat offline)
-- [ ] Sinkronisasi data ke server saat kembali online
+- [x] Mendukung offline-first (buat data saat offline)
+- [x] Sinkronisasi data ke server saat kembali online
 
 ---
 

@@ -5,6 +5,10 @@ export default class BookmarkPresenter {
   #view;
   #model;
 
+  #stories = [];
+  #keyword = '';
+  #sortType = 'newest';
+
   constructor({ view, model }) {
     this.#view = view;
     this.#model = model;
@@ -29,18 +33,46 @@ export default class BookmarkPresenter {
       await this.showStoriesMap();
 
       const listOfStories = await this.#model.getAllStories();
-      console.log('RAW from DB:', listOfStories);
-
       const stories = await Promise.all(listOfStories.map(storyMapper));
-      console.log('Mapped stories:', stories);
 
-      const message = 'Berhasil mendapatkan daftar cerita tersimpan';
-      this.#view.populateBookmarkedStories(message, stories);
+      this.#stories = stories;
+
+      this.#applyFilters();
     } catch (error) {
       console.error('initialStoriesAndMap: error:', error);
       this.#view.populateBookmarkedStoriesError(mapErrorMessage(error.message));
     } finally {
       this.#view.hideStoriesListLoading();
     }
+  }
+
+  #applyFilters() {
+    let result = [...this.#stories];
+
+    if (this.#keyword) {
+      result = result.filter((story) =>
+        story.name.toLowerCase().includes(this.#keyword.toLowerCase()),
+      );
+    }
+
+    result.sort((a, b) => {
+      if (this.#sortType === 'newest') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    });
+
+    this.#view.populateBookmarkedStories(result);
+  }
+
+  setKeyword(keyword) {
+    this.#keyword = keyword;
+    this.#applyFilters();
+  }
+
+  setSortType(type) {
+    this.#sortType = type;
+    this.#applyFilters();
   }
 }

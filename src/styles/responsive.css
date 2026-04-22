@@ -151,6 +151,21 @@
     flex-direction: row;
   }
   /* NEW STORY Page End */
+
+  /* BOOKMARK Page Start */
+  .bookmark-tools {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .bookmark-field:first-child {
+    flex: 2;
+  }
+
+  .bookmark-field:last-child {
+    flex: 1;
+  }
+  /* BOOKMARK Page End */
 }
 
 @media screen and (min-width: 1024px) {
@@ -276,4 +291,10 @@
     min-height: 200px;
   }
   /* NEW STORY Page End */
+
+  /* BOOKMARK Page Start */
+  .bookmark-tools {
+    gap: 1.5rem;
+  }
+  /* BOOKMARK Page End */
 }

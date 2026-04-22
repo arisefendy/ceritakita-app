@@ -216,6 +216,11 @@ export default class Map {
     return newMarker;
   }
 
+  clearMarkers() {
+    this.#storyLocationLayer.clearLayers();
+    this.#activeMarker = null;
+  }
+
   addMapEventListener(eventName, callback) {
     this.#map.addEventListener(eventName, callback);
   }

@@ -24,6 +24,36 @@ export default class BookmarkPage {
       <section class="container">
         <h1 class="section-title">Daftar Cerita Tersimpan</h1>
  
+        <div class="bookmark-tools">
+          <div class="bookmark-field">
+            <label for="search-bookmark" class="bookmark-label">Cari Cerita</label>
+            <div class="input-icon-wrapper">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              <input 
+                type="search" 
+                id="search-bookmark" 
+                class="bookmark-search"
+                placeholder="Contoh: John, Jane, Doe"
+                aria-describedby="search-hint"
+              />
+            </div>
+            <small id="search-hint">Masukkan nama pembuat cerita</small>
+          </div>
+
+          <div class="bookmark-field">
+            <label for="sort-bookmark" class="bookmark-label">Urutkan</label>
+            <div class="bookmark-sort-wrapper">
+              <select id="sort-bookmark" class="bookmark-sort">
+                <option value="newest">Terbaru</option>
+                <option value="oldest">Terlama</option>
+              </select>
+
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <small id="sort-hint">Pilih cara pengurutan cerita</small>
+          </div>
+        </div>
+        
         <div class="stories-list__container">
           <div id="stories-list"></div>
           <div id="stories-list-loading-container"></div>
@@ -39,12 +69,31 @@ export default class BookmarkPage {
     });
 
     await this.#presenter.initialStoriesAndMap();
+
+    this.#initTools();
   }
 
-  populateBookmarkedStories(message, stories) {
+  #initTools() {
+    const searchInput = document.getElementById('search-bookmark');
+    const sortSelect = document.getElementById('sort-bookmark');
+
+    searchInput.addEventListener('input', (event) => {
+      this.#presenter.setKeyword(event.target.value);
+    });
+
+    sortSelect.addEventListener('change', (event) => {
+      this.#presenter.setSortType(event.target.value);
+    });
+  }
+
+  populateBookmarkedStories(stories) {
     if (stories.length <= 0) {
       this.populateBookmarkedStoriesListEmpty();
       return;
+    }
+
+    if (this.#map) {
+      this.#map.clearMarkers();
     }
 
     const html = stories.reduce((accumulator, story) => {
@@ -70,10 +119,18 @@ export default class BookmarkPage {
   }
 
   populateBookmarkedStoriesListEmpty() {
+    if (this.#map) {
+      this.#map.clearMarkers();
+    }
+
     document.getElementById('stories-list').innerHTML = storiesListEmptyTemplate();
   }
 
   populateBookmarkedStoriesError(message) {
+    if (this.#map) {
+      this.#map.clearMarkers();
+    }
+
     document.getElementById('stories-list').innerHTML = storiesListErrorTemplate(message);
   }
 

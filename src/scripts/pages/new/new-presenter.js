@@ -1,3 +1,4 @@
+import Database from '../../data/database';
 import { mapErrorMessage, mapCameraError } from '../../utils/error-mapper';
 
 export default class NewPresenter {
@@ -24,13 +25,22 @@ export default class NewPresenter {
   async postNewStory({ description, photo, lat = null, lon = null }) {
     this.#view.showSubmitLoadingButton();
 
+    const pendingId = crypto.randomUUID();
+
+    const data = {
+      description: description,
+      photo: photo,
+      lat: lat,
+      lon: lon,
+    };
+
     try {
-      const data = {
-        description: description,
-        photo: photo,
-        lat: lat,
-        lon: lon,
-      };
+      if (!navigator.onLine) {
+        await Database.putPendingStory({ ...data, id: pendingId });
+        this.#view.storeSuccessfully('Disimpan offline, data akan dikirim saat online');
+
+        return;
+      }
 
       const response = await this.#model.addStory(data);
 
@@ -43,7 +53,13 @@ export default class NewPresenter {
       this.#view.storeSuccessfully('Berhasil membuat cerita');
     } catch (error) {
       console.error('postNewStory: error:', error);
-      this.#view.storeFailed(mapErrorMessage(error.message));
+
+      if (error instanceof TypeError) {
+        await Database.putPendingStory({ ...data, id: pendingId });
+        this.#view.storeSuccessfully('Disimpan offline, data akan dikirim saat online');
+      } else {
+        this.#view.storeFailed(mapErrorMessage(error.message));
+      }
     } finally {
       this.#view.hideSubmitLoadingButton();
     }

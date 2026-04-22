@@ -32,3 +32,15 @@ export function showConfirm(message) {
     cancelButtonColor: '#fb2c36',
   });
 }
+
+export function showToast(message, type = 'success') {
+  return Swal.fire({
+    toast: true,
+    position: 'bottom-end',
+    icon: type,
+    title: message,
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+  });
+}
