@@ -896,6 +896,7 @@ footer {
   max-width: 900px;
   min-height: 80vh;
   margin: 0 auto;
+  padding-top: 0.8rem;
 }
 
 .story-detail {
@@ -919,6 +920,7 @@ footer {
   height: 250px;
   overflow: hidden;
   background: var(--border-color);
+  margin-bottom: 1rem;
 }
 
 .story-detail__image-wrapper::after {

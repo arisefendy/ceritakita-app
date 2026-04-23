@@ -57,6 +57,38 @@ registerRoute(
   }),
 );
 
+registerRoute(
+  ({ url }) => {
+    return url.origin === 'https://tile.openstreetmap.org';
+  },
+  new CacheFirst({
+    cacheName: 'osm-tiles',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  }),
+);
+
+registerRoute(
+  ({ url }) => {
+    return url.origin === self.location.origin && url.pathname.includes('marker-icon');
+  },
+  new CacheFirst({
+    cacheName: 'marker-icons',
+  }),
+);
+
+registerRoute(
+  ({ url }) => {
+    return url.origin.includes('unpkg.com') || url.origin.includes('leaflet');
+  },
+  new CacheFirst({
+    cacheName: 'leaflet-assets',
+  }),
+);
+
 self.addEventListener('push', (event) => {
   console.log('Service worker pushing...');
 

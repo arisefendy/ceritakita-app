@@ -120,10 +120,8 @@ export default class Map {
 
     // Default icon marker
     this.#defaultIcon = this.createIcon({
-      iconRetinaUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-      iconUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+      iconRetinaUrl: '/images/icons/marker-icon-2x-blue.png',
+      iconUrl: '/images/icons/marker-icon-blue.png',
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [0, -41],
@@ -131,10 +129,8 @@ export default class Map {
 
     // Active icon marker
     this.#activeIcon = this.createIcon({
-      iconRetinaUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
-      iconUrl:
-        'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+      iconRetinaUrl: '/images/icons/marker-icon-2x-orange.png',
+      iconUrl: '/images/icons/marker-icon-orange.png',
       iconSize: [35, 55],
       iconAnchor: [17, 55],
       popupAnchor: [0, -55],

@@ -20,6 +20,7 @@ export default class StoryDetailPage {
     return `
       <section>
         <div class="story-detail__container">
+          <h1 class="section-title">Detail Cerita</h1>
           <div id="story-detail" class="story-detail" aria-live="polite"></div>
           <div id="story-detail-loading-container"></div>
         </div>
