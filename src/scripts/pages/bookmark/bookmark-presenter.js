@@ -40,7 +40,7 @@ export default class BookmarkPresenter {
       this.#applyFilters();
     } catch (error) {
       console.error('initialStoriesAndMap: error:', error);
-      this.#view.populateBookmarkedStoriesError(mapErrorMessage(error.message));
+      this.#view.populateBookmarkedStoriesListError(mapErrorMessage(error.message), 'bookmark');
     } finally {
       this.#view.hideStoriesListLoading();
     }
@@ -63,7 +63,14 @@ export default class BookmarkPresenter {
       return new Date(a.createdAt) - new Date(b.createdAt);
     });
 
-    this.#view.populateBookmarkedStories(result);
+    if (result.length === 0) {
+      const context = this.#keyword ? 'search' : 'bookmark';
+
+      this.#view.populateBookmarkedStoriesListEmpty(context, this.#keyword);
+      return;
+    }
+
+    this.#view.populateBookmarkedStories(result, true);
   }
 
   setKeyword(keyword) {

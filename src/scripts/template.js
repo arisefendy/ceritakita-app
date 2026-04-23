@@ -25,7 +25,6 @@ export function mainNavigationTemplate() {
 
 export function unauthenticatedNavigationTemplate() {
   return `
-    <li id="push-notification-tools" class="nav-item"></li>
     <li class="nav-item">
       <a href="#/login" class="nav-link">Masuk</a>
     </li>
@@ -51,22 +50,63 @@ export function authenticatedNavigationTemplate() {
   `;
 }
 
-export function storiesListEmptyTemplate() {
+export function storiesListEmptyTemplate(context = 'home', keyword = '') {
+  let image = 'images/errors/empty-list.svg';
+  let title = 'Tidak ada cerita tersedia';
+  let description = 'Saat ini belum ada cerita yang bisa ditampilkan.';
+
+  switch (context) {
+    case 'bookmark':
+      title = 'Belum ada cerita yang disimpan';
+      description = 'Simpan cerita favoritmu untuk melihatnya di sini.';
+      break;
+
+    case 'search':
+      image = 'images/errors/result-no-found.svg';
+      title = 'Pencarian Tidak ditemukan';
+      description = keyword
+        ? `Tidak ada cerita dari "${keyword}". Coba periksa kembali ejaan atau gunakan nama lain.`
+        : 'Masukkan nama pembuat cerita untuk mulai mencari.';
+      break;
+
+    default:
+      break;
+  }
+
   return `
     <div id="stories-list-empty" class="stories-list-placeholder" aria-live="polite">
-      <img src="images/errors/empty-list.svg" alt="Tidak ada cerita" class="stories-list-placeholder__image">
-      <h2>Tidak ada cerita yang tersedia</h2>
-      <p>Saat ini, tidak ada cerita yang dapat ditampilkan.</p>
+      <img src="${image}" alt="${title}" class="stories-list-placeholder__image">
+      <h2>${title}</h2>
+      <p>${description}</p>
     </div>
   `;
 }
 
-export function storiesListErrorTemplate(message) {
+export function storiesListErrorTemplate(message, context = 'home') {
+  let image = 'images/errors/network-error.svg';
+  let title = 'Gagal memuat daftar cerita';
+  let description = message || 'Periksa koneksi internet atau coba lagi nanti.';
+
+  switch (context) {
+    case 'bookmark':
+      title = 'Gagal memuat cerita tersimpan';
+      description = message || 'Tidak dapat mengambil data cerita tersimpan.';
+      break;
+
+    case 'search':
+      title = 'Gagal melakukan pencarian';
+      description = message || 'Pencarian tidak dapat dilakukan saat ini.';
+      break;
+
+    default:
+      break;
+  }
+
   return `
     <div id="stories-list-error" class="stories-list-placeholder" aria-live="assertive">
-      <img src="images/errors/network-error.svg" alt="Terjadi kesalahan" class="stories-list-placeholder__image">
-      <h2>Terjadi kesalahan dalam pengambilan daftar cerita</h2>
-      <p>${message ? message : 'Periksa koneksi internet atau coba lagi nanti.'}</p>
+      <img src="${image}" alt="${title}" class="stories-list-placeholder__image">
+      <h2>${title}</h2>
+      <p>${description}</p>
     </div>
   `;
 }

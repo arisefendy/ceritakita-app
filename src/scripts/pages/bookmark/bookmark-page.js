@@ -86,13 +86,8 @@ export default class BookmarkPage {
     });
   }
 
-  populateBookmarkedStories(stories) {
-    if (stories.length <= 0) {
-      this.populateBookmarkedStoriesListEmpty();
-      return;
-    }
-
-    if (this.#map) {
+  populateBookmarkedStories(stories, resetMap) {
+    if (resetMap) {
       this.#map.clearMarkers();
     }
 
@@ -118,20 +113,20 @@ export default class BookmarkPage {
     `;
   }
 
-  populateBookmarkedStoriesListEmpty() {
+  populateBookmarkedStoriesListEmpty(context, keyword) {
     if (this.#map) {
       this.#map.clearMarkers();
     }
 
-    document.getElementById('stories-list').innerHTML = storiesListEmptyTemplate();
+    document.getElementById('stories-list').innerHTML = storiesListEmptyTemplate(context, keyword);
   }
 
-  populateBookmarkedStoriesError(message) {
+  populateBookmarkedStoriesListError(message, context) {
     if (this.#map) {
       this.#map.clearMarkers();
     }
 
-    document.getElementById('stories-list').innerHTML = storiesListErrorTemplate(message);
+    document.getElementById('stories-list').innerHTML = storiesListErrorTemplate(message, context);
   }
 
   async initialMap() {
