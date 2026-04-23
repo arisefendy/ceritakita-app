@@ -62,14 +62,55 @@ self.addEventListener('push', (event) => {
 
   async function chainPromise() {
     const data = await event.data.json();
+    const storyId = data?.options?.data?.id;
 
     const options = {
       body: data.options?.body || 'Ada pembaruan baru',
       icon: '/images/logo.png',
+      data: {
+        storyId,
+      },
+      actions: [
+        {
+          action: 'open-detail',
+          type: 'button',
+          title: 'Lihat Detail',
+          icon: '/images/icons/file-x128.png',
+        },
+      ],
     };
 
     await self.registration.showNotification(data.title || 'Notifikasi', options);
   }
 
   event.waitUntil(chainPromise());
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+
+  const data = event.notification.data || {};
+
+  if (event.action !== 'open-detail') return;
+
+  const urlToOpen = data.storyId ? `/#/stories/${data.storyId}` : '/#/';
+
+  event.waitUntil(
+    (async () => {
+      const allClients = await clients.matchAll({
+        type: 'window',
+        includeUncontrolled: true,
+      });
+
+      for (const client of allClients) {
+        if (client.url.includes(self.location.origin)) {
+          client.focus();
+          client.navigate(urlToOpen);
+          return;
+        }
+      }
+
+      await clients.openWindow(urlToOpen);
+    })(),
+  );
 });
