@@ -93,15 +93,25 @@ self.addEventListener('push', (event) => {
   console.log('Service worker pushing...');
 
   async function chainPromise() {
-    const data = await event.data.json();
+    let data = {
+      title: 'Notifikasi Baru',
+      options: {},
+    };
+
+    if (event.data) {
+      try {
+        data = await event.data.json();
+      } catch (error) {
+        console.warn('Invalid JSON:', error.message);
+      }
+    }
+
     const storyId = data?.options?.data?.id;
 
     const options = {
       body: data.options?.body || 'Ada pembaruan baru',
       icon: '/images/logo.png',
-      data: {
-        storyId,
-      },
+      data: { storyId },
       actions: [
         {
           action: 'open-detail',
@@ -112,7 +122,7 @@ self.addEventListener('push', (event) => {
       ],
     };
 
-    await self.registration.showNotification(data.title || 'Notifikasi', options);
+    await self.registration.showNotification(data.title || 'Notifikasi Baru', options);
   }
 
   event.waitUntil(chainPromise());
@@ -122,27 +132,23 @@ self.addEventListener('notificationclick', (event) => {
   event.notification.close();
 
   const data = event.notification.data || {};
-
-  if (event.action !== 'open-detail') return;
-
-  const urlToOpen = data.storyId ? `/#/stories/${data.storyId}` : '/#/';
+  const targetUrl = data.storyId ? `/#/stories/${data.storyId}` : '/#/';
 
   event.waitUntil(
     (async () => {
-      const allClients = await clients.matchAll({
+      const clientsList = await clients.matchAll({
         type: 'window',
         includeUncontrolled: true,
       });
 
-      for (const client of allClients) {
+      for (const client of clientsList) {
         if (client.url.includes(self.location.origin)) {
-          client.focus();
-          client.navigate(urlToOpen);
-          return;
+          await client.focus();
+          return client.navigate(targetUrl);
         }
       }
 
-      await clients.openWindow(urlToOpen);
+      await clients.openWindow(targetUrl);
     })(),
   );
 });
