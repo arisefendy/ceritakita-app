@@ -171,7 +171,7 @@ Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service work
 ⭐⭐⭐⭐ **Advanced**
 
 - [x] Tersedia toggle enable/disable push notification
-- [ ] Notifikasi memiliki action (klik → navigasi ke detail data)
+- [x] Notifikasi memiliki action (klik → navigasi ke detail data)
 
 ---
 
@@ -192,8 +192,8 @@ Aplikasi harus mendukung instalasi ke home screen dan tetap dapat diakses secara
 
 ⭐⭐⭐⭐ **Advanced**
 
-- [ ] Data dinamis (API) tetap tersedia saat offline (caching strategy)
-- [ ] Menggunakan strategi caching yang sesuai (Workbox/runtime caching)
+- [x] Data dinamis (API) tetap tersedia saat offline (caching strategy)
+- [x] Menggunakan strategi caching yang sesuai (Workbox/runtime caching)
 
 ---
 
@@ -224,11 +224,11 @@ Aplikasi harus dapat diakses secara publik.
 
 ⭐⭐⭐⭐ **Wajib**
 
-- [ ] Deploy ke salah satu platform:
+- [x] Deploy ke salah satu platform:
   - GitHub Pages
   - Firebase Hosting
   - Netlify
-- [ ] Menyertakan URL deployment pada file `STUDENT.txt`
+- [x] Menyertakan URL deployment pada file `STUDENT.txt`
 
 ---
 
