@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     navigationDrawer: document.querySelector('#navigation-drawer'),
     skipLinkButton: document.querySelector('#skip-link'),
   });
-  await app.renderPage();
-
   await registerServiceWorker();
+
+  await app.renderPage();
 
   if (navigator.onLine) {
     await syncPendingStories();

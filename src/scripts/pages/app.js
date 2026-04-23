@@ -91,6 +91,8 @@ class App {
 
   async #setupPushNotification() {
     const pushNotificationTools = document.getElementById('push-notification-tools');
+    if (!pushNotificationTools) return;
+
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
 
     if (isSubscribed) {
@@ -129,12 +131,17 @@ class App {
     });
 
     transition.ready.catch(console.error);
-    transition.updateCallbackDone.then(() => {
+    transition.updateCallbackDone.then(async () => {
       scrollTo({ top: 0, behavior: 'instant' });
       this.#setupNavigationList();
 
-      if (isServiceWorkerAvailable()) {
-        this.#setupPushNotification();
+      if (isServiceWorkerAvailable() && getAccessToken()) {
+        try {
+          await navigator.serviceWorker.ready;
+          await this.#setupPushNotification();
+        } catch (error) {
+          console.warn('Service worker belum ready:', error);
+        }
       }
     });
   }

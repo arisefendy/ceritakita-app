@@ -36,13 +36,20 @@ export async function requestNotificationPermission() {
   return true;
 }
 
-export async function getPushSubscribtion() {
+export async function getPushSubscription() {
+  if (!('serviceWorker' in navigator)) return null;
+
   const registration = await navigator.serviceWorker.getRegistration();
+
+  if (!registration || !registration.pushManager) {
+    return null;
+  }
+
   return await registration.pushManager.getSubscription();
 }
 
 export async function isCurrentPushSubscriptionAvailable() {
-  return !!(await getPushSubscribtion());
+  return !!(await getPushSubscription());
 }
 
 export function generateSubscribeOptions() {
@@ -71,6 +78,12 @@ export async function subscribe() {
 
   try {
     const registration = await navigator.serviceWorker.getRegistration();
+
+    if (!registration || !registration.pushManager) {
+      console.warn('Service worker belum siap atau tidak didukung');
+      return;
+    }
+
     pushSubscription = await registration.pushManager.subscribe(generateSubscribeOptions());
 
     const { endpoint, keys } = pushSubscription.toJSON();
@@ -80,7 +93,9 @@ export async function subscribe() {
       console.error('subscribe: response:', response);
       showError(failureSubscribeMessage);
 
-      await pushSubscription.unsubscribe();
+      if (pushSubscription) {
+        await pushSubscription.unsubscribe();
+      }
       return;
     }
 
@@ -89,7 +104,9 @@ export async function subscribe() {
     console.error('subscribe: error:', error);
     showError(failureSubscribeMessage);
 
-    await pushSubscription.unsubscribe();
+    if (pushSubscription) {
+      await pushSubscription.unsubscribe();
+    }
   }
 }
 
@@ -98,7 +115,7 @@ export async function unsubscribe() {
   const successUnsubscribeMessage = 'Langganan push notification berhasil dinonaktifkan.';
 
   try {
-    const pushSubscription = await getPushSubscribtion();
+    const pushSubscription = await getPushSubscription();
 
     if (!pushSubscription) {
       showError(
