@@ -2,9 +2,9 @@
 
 A modern web app for sharing stories with interactive maps and PWA support.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://ceritakitaapp.netlify.app) [![Netlify Status](https://api.netlify.com/api/v1/badges/46c8b9f2-70b8-4e47-ba33-a4bf35f42ddf/deploy-status)](https://ceritakitaapp.netlify.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-00C853?style=flat-square&logo=google-chrome&logoColor=white)](https://ceritakitaapp.netlify.app) [![Netlify Status](https://api.netlify.com/api/v1/badges/46c8b9f2-70b8-4e47-ba33-a4bf35f42ddf/deploy-status)](https://ceritakitaapp.netlify.app)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/arisefendy/ceritakita-app) ![GitHub repo size](https://img.shields.io/github/repo-size/arisefendy/ceritakita-app) ![License](https://img.shields.io/badge/license-MIT-green)
+![GitHub last commit](https://img.shields.io/github/last-commit/arisefendy/ceritakita-app) ![GitHub repo size](https://img.shields.io/github/repo-size/arisefendy/ceritakita-app) [![License](https://img.shields.io/github/license/arisefendy/ceritakita-app)](./LICENSE)
 
 ## Table of Contents
 
