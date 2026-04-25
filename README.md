@@ -1,268 +1,124 @@
 # CeritaKita App
 
+A modern web app for sharing stories with interactive maps and PWA support.
+
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://ceritakitaapp.netlify.app) [![Netlify Status](https://api.netlify.com/api/v1/badges/46c8b9f2-70b8-4e47-ba33-a4bf35f42ddf/deploy-status)](https://ceritakitaapp.netlify.app)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/arisefendy/ceritakita-app) ![GitHub repo size](https://img.shields.io/github/repo-size/arisefendy/ceritakita-app) ![License](https://img.shields.io/badge/license-MIT-green)
+
 ## Table of Contents
 
 - [Description](#description)
-- [Fitur Utama](#-fitur-utama)
-- [Submission Status](#-submission-status)
-- [Submission Pertama](#submission-proyek-pertama)
-- [Submission Kedua](#submission-proyek-kedua)
-- [Struktur Project](#-struktur-project)
-- [Setup & Development](#️-setup--development)
+- [Live Demo](#-live-demo)
+- [Screenshots](#-screenshots)
+- [Key Features](#-key-features)
+- [Project Achievements](#-project-achievements)
 - [Tech Stack](#️-tech-stack)
+- [Setup & Development](#️-setup--development)
+- [Project Structure](#-project-structure)
 - [Author](#-author)
 
 ---
 
 ## Description
 
-Aplikasi berbagi cerita berbasis web yang memungkinkan pengguna untuk melihat dan menambahkan cerita berdasarkan lokasi.
+CeritaKita is a location-based story sharing web application built using a **Single Page Application (SPA)** architecture. It integrates interactive maps, **Push Notifications**, **Progressive Web App (PWA)** capabilities, and **IndexedDB** for local data storage.
 
-Project ini merupakan bagian dari submission kelas **[Belajar Pengembangan Web Intermediate](https://www.dicoding.com/academies/219)** di Dicoding yang terdiri dari dua tahap submission project.
+Users can explore stories based on location, create new stories with images and geolocation, bookmark their favorite stories, and continue using the app even in offline conditions.
 
-Aplikasi ini dikembangkan menggunakan konsep Single Page Application (SPA), terintegrasi dengan **[Dicoding Story API](https://story-api.dicoding.dev/v1)**, menggunakan **Leaflet.js** untuk peta, serta dioptimalkan untuk memenuhi **Standar Aksesibilitas WCAG**.
-
----
-
-## ✨ Fitur Utama
-
-- Menampilkan cerita berdasarkan lokasi pada peta interaktif
-- Visualisasi marker menggunakan Leaflet.js
-- Menambahkan cerita baru dengan foto dan koordinat
-- Navigasi tanpa reload halaman (SPA)
-- Mendukung aksesibilitas sesuai standar WCAG
-- (Progress) Push Notification
-- (Progress) Dukungan PWA & Offline Mode
+This project was developed as part of the submission for the **[Belajar Pengembangan Web Intermediate](https://www.dicoding.com/academies/219)** course on Dicoding, focusing on modern web technologies and optimal user experience.
 
 ---
 
-## 🎯 Submission Status
+## 🌐 Live Demo
 
-- 📌 Submission 1: ✅
-- 📌 Submission 2: **In progress**
-
----
-
-## 📊 Submission Checklist
-
-> Setiap kriteria memiliki rentang nilai **0 - 4 ⭐** Target minimal: **2 ⭐ per kriteria (LULUS)**
+👉 https://ceritakitaapp.netlify.app
 
 ---
 
-### Submission: Proyek Pertama
+## 📸 Screenshots
 
-#### Kriteria 1: SPA & Transisi Halaman
-
-Aplikasi harus mengadopsi arsitektur Single Page Application (SPA) dengan navigasi tanpa reload halaman.
-
-⭐⭐ **Basic**
-
-- [x] Menerapkan konsep SPA dengan hash routing
-- [x] Menerapkan default view transition
-
-⭐⭐⭐ **Skilled**
-
-- [x] Menerapkan arsitektur MVP ATAU custom view transition
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Menerapkan arsitektur MVP DAN custom view transition
-
----
-
-#### Kriteria 2: Data & Marker pada Peta
-
-Aplikasi harus menampilkan data dari API dan memvisualisasikannya dalam peta digital.
-
-⭐⭐ **Basic**
-
-- [x] Menampilkan data dari API (minimal gambar dan 3 teks)
-- [x] Melakukan visualisasi pada peta dengan marker dan pop-up
-
-⭐⭐⭐ **Skilled**
-
-- [x] Membuat 1 fungsionalitas untuk interaksi dengan peta, seperti:
-  - Filter lokasi
-  - Highlight marker aktif
-  - Sinkronisasi list dan peta
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Menerapkan layer control (minimal 2 tile layer)
+<table>
+  <tr>
+    <td align="center">
+      <b>Login</b><br>
+      <img src="./screenshots/login.png" width="400"/>
+    </td>
+    <td align="center">
+      <b>Home - Map</b><br>
+      <img src="./screenshots/home-map.png" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Home - Story List</b><br>
+      <img src="./screenshots/home-list.png" width="400"/>
+    </td>
+    <td align="center">
+      <b>Add Story</b><br>
+      <img src="./screenshots/add-story.png" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <b>Bookmark</b><br>
+      <img src="./screenshots/bookmark.png" width="400"/>
+    </td>
+    <td align="center">
+      <b>PWA Install</b><br>
+      <img src="./screenshots/pwa.png" width="400"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
-#### Kriteria 3: Tambah Data Baru
+## ✨ Key Features
 
-Aplikasi harus memiliki fitur untuk menambahkan data baru ke API.
-
-⭐⭐ **Basic**
-
-- [x] Membuat form tambah data + upload file
-- [x] Pilih latitude & longitude melalui event klik di peta digital
-- [x] Kirim data ke API (asynchronous)
-
-⭐⭐⭐ **Skilled**
-
-- [x] Menambah interaktivitas pada form, seperti:
-  - Validasi input, atau
-  - Pesan sukses atau error
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Memiliki opsi memilih gambar yang ditangkap melalui kamera langsung (media stream)
-- [x] Menutup media stream ketika sudah tidak digunakan
+- 📍 Interactive Map (Leaflet.js)
+- ➕ Add New Story
+- ⚡ Single Page Application (SPA)
+- 🔔 Push Notifications
+- 📲 Progressive Web App (PWA)
+- 🌐 Offline Support (Workbox)
+- 💾 IndexedDB Integration
+- ⭐ Bookmark Feature
+- ♿ Accessibility (WCAG)
 
 ---
 
-#### Kriteria 4: Aksesibilitas
+## 🎯 Project Achievements
 
-Aplikasi harus memenuhi standar aksesibilitas untuk memberikan pengalaman pengguna yang baik.
+This project has met all criteria of the two submission stages:
 
-⭐⭐ **Basic**
+### First Submission
 
-- [x] Menerapkan teks alternatif pada setiap gambar
-- [x] Menggunakan HTML elemen yang semantik
-- [x] Memberikan label pada setiap input
+- [x] Implemented SPA with page transitions
+- [x] Displayed data visualization on maps
+- [x] Implemented add new data feature
+- [x] Applied accessibility standards
 
-⭐⭐⭐ **Skilled**
+### Second Submission
 
-- [x] Responsive Design
-  - Mobile (375px)
-  - Tablet (768px)
-  - Desktop (1024px)
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Menerapkan fitur Skip to content
-- [x] Seluruh elemen interaktif dapat dioperasikan dengan keyboard
+- [x] Maintained all previous features
+- [x] Implemented push notification
+- [x] Added PWA support (installable & offline mode)
+- [x] Integrated IndexedDB
+- [x] Deployed application publicly
 
 ---
 
-### Submission: Proyek Kedua
+## 🛠️ Tech Stack
 
-#### Kriteria 1: Mempertahankan Seluruh Kriteria Submission Sebelumnya
-
-Aplikasi tetap mempertahankan seluruh fitur utama dari submission pertama.
-
-⭐⭐⭐⭐ **Lolos**
-
-- [x] Menerapkan SPA dan transisi halaman
-- [x] Menampilkan data dan marker pada peta
-- [x] Memiliki fitur tambah data baru
-- [x] Menerapkan aksesibilitas sesuai standar
-
----
-
-#### Kriteria 2: Push Notification
-
-Aplikasi harus mampu menampilkan notifikasi dari server menggunakan service worker.
-
-⭐⭐ **Basic**
-
-- [x] Menampilkan push notification dari server
-- [x] Notifikasi dipicu saat menambahkan data story baru
-
-⭐⭐⭐ **Skilled**
-
-- [x] Konten notifikasi dinamis (judul, pesan, icon)
-- [x] Menggunakan payload dari event pada service worker
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Tersedia toggle enable/disable push notification
-- [x] Notifikasi memiliki action (klik → navigasi ke detail data)
-
----
-
-#### Kriteria 3: Progressive Web App (PWA)
-
-Aplikasi harus mendukung instalasi ke home screen dan tetap dapat diakses secara offline.
-
-⭐⭐ **Basic**
-
-- [x] Aplikasi dapat di-install (Add to Home Screen)
-- [x] Aplikasi dapat diakses offline, walau hanya Application Shell
-
-⭐⭐⭐ **Skilled**
-
-- [x] Menambahkan screenshot pada Web App Manifest
-- [x] Menambahkan shortcuts pada Web App Manifest
-- [x] Tidak ada warning pada manifest (Chrome DevTools "Application -> Manifest")
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Data dinamis (API) tetap tersedia saat offline (caching strategy)
-- [x] Menggunakan strategi caching yang sesuai (Workbox/runtime caching)
-
----
-
-#### Kriteria 4: IndexedDB
-
-Aplikasi memiliki fitur (create, read, delete) yang menggunakan IndexedDB.
-
-⭐⭐ **Basic**
-
-- [x] Menyimpan data ke IndexedDB
-- [x] Menampilkan data dari IndexedDB
-- [x] Menghapus data dari IndexedDB
-
-⭐⭐⭐ **Skilled**
-
-- [x] Menambahkan fitur interaktif (Searching, Filtering, Sorting, dsb.)
-
-⭐⭐⭐⭐ **Advanced**
-
-- [x] Mendukung offline-first (buat data saat offline)
-- [x] Sinkronisasi data ke server saat kembali online
-
----
-
-#### Kriteria 5: Deploy Aplikasi
-
-Aplikasi harus dapat diakses secara publik.
-
-⭐⭐⭐⭐ **Wajib**
-
-- [x] Deploy ke salah satu platform:
-  - GitHub Pages
-  - Firebase Hosting
-  - Netlify
-- [x] Menyertakan URL deployment pada file `STUDENT.txt`
-
----
-
-## 📁 Struktur Project
-
-```bash
-citycareapp
-├── package.json            # Informasi dependensi proyek
-├── package-lock.json       # File lock untuk dependensi
-├── README.md               # Dokumentasi proyek
-├── webpack.common.js       # Konfigurasi Webpack (umum)
-├── webpack.dev.js          # Konfigurasi Webpack (development)
-├── webpack.prod.js         # Konfigurasi Webpack (production)
-└── src/                    # Direktori utama source code aplikasi
-    ├── index.html          # Berkas HTML utama
-    ├── public/             # Direktori aset publik
-    │   ├── favicon.png     # Ikon aplikasi
-    │   └── images/         # Gambar yang digunakan dalam proyek
-    │       ├── logo.png
-    │       ├── notes-background.jpg
-    │       ├── placeholder-image.jpg
-    │       └── errors/     # Gambar fallback saat terjadi error loading
-    ├── scripts             # Direktori untuk kode JavaScript
-    │   ├── data/           # Folder untuk API atau sumber data
-    │   ├── pages/          # Halaman/view utama (render UI)
-    │   ├── routes/         # Pengaturan routing
-    │   ├── utils/          # Helper dan utilitas
-    │   ├── templates.js    # Template HTML dinamis
-    │   ├── config.js       # Konfigurasi proyek
-    │   └── index.js        # Entry point aplikasi
-    └── styles/             # File CSS
-        ├── responsive.css  # Styling untuk responsivitas
-        └── styles.css      # Styling utama/global aplikasi
-```
+- HTML, CSS, JavaScript (ES6+)
+- Webpack & Babel
+- SPA (Hash Router)
+- MVP Architecture
+- Leaflet.js
+- [Dicoding Story API](https://story-api.dicoding.dev/v1)
+- Workbox (Service Worker)
+- IndexedDB
+- Web Push API
 
 ---
 
@@ -279,7 +135,7 @@ citycareapp
 npm install
 ```
 
-### Menjalankan Project
+### Run Project
 
 - Development Server
 
@@ -301,15 +157,41 @@ npm run serve
 
 ---
 
-## 🛠️ Tech Stack
+## 📁 Project Structure
 
-- HTML, CSS, JavaScript (ES6+)
-- Webpack & Babel
-- SPA Router (Hash based)
-- Model-View-Presenter (MVP) Architecture
-- Leaflet.js
-- View Transition API
-- Web Content Accessibility Guidelines (WCAG)
+```bash
+ceritakita-app
+├── package.json
+├── package-lock.json
+├── README.md
+├── webpack.common.js
+├── webpack.dev.js
+├── webpack.prod.js
+└── src/
+    ├── index.html
+    ├── public/
+    │   ├── app.webmanifest
+    │   ├── favicon.png
+    │   └── images/
+    │       ├── logo.png
+    │       ├── notes-background.jpg
+    │       ├── placeholder-image.jpg
+    │       ├── errors/
+    │       ├── icons/
+    │       └── screenshots/
+    ├── scripts/
+    │   ├── data/
+    │   ├── pages/
+    │   ├── routes/
+    │   ├── utils/
+    │   ├── config.js
+    │   ├── index.js
+    │   ├── sw.js
+    │   └── templates.js
+    └── styles/
+        ├── responsive.css
+        └── styles.css
+```
 
 ---
 
@@ -319,6 +201,6 @@ Muhammad Aris Efendi
 
 ---
 
-## ⭐ Progress
+## ⭐ Support
 
-> Progress akan diperbarui setiap selesai implementasi fitur.
+If you like this project, consider giving it a ⭐ on GitHub!
